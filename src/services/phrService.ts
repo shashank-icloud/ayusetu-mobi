@@ -160,7 +160,7 @@ export const phrService = {
     // ========================================
     // Health Records Management
     // ========================================
-    
+
     /**
      * Fetch all health records for the patient
      */

@@ -88,6 +88,20 @@ export default function PatientDashboard({ navigation }: Props) {
             color: '#009688',
             onPress: () => console.log('View Lab Results'),
         },
+        {
+            id: 'family',
+            title: 'Family',
+            icon: '👨‍👩‍👧‍👦',
+            color: '#E91E63',
+            onPress: () => navigation.navigate('FamilyManagement'),
+        },
+        {
+            id: 'profile',
+            title: 'My Profile',
+            icon: '⚙️',
+            color: '#795548',
+            onPress: () => navigation.navigate('Profile'),
+        },
     ];
 
     return (
@@ -104,7 +118,10 @@ export default function PatientDashboard({ navigation }: Props) {
                     <Text style={styles.greeting}>Hello,</Text>
                     <Text style={styles.userName}>Patient Name</Text>
                 </View>
-                <TouchableOpacity style={styles.profileButton}>
+                <TouchableOpacity 
+                    style={styles.profileButton}
+                    onPress={() => navigation.navigate('Profile')}
+                >
                     <Text style={styles.profileIcon}>👤</Text>
                 </TouchableOpacity>
             </View>

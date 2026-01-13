@@ -44,8 +44,8 @@ export default function HealthRecordsScreen({ navigation }: Props) {
         setRefreshing(false);
     };
 
-    const filteredRecords = selectedCategory === 'all' 
-        ? records 
+    const filteredRecords = selectedCategory === 'all'
+        ? records
         : records.filter(r => r.type === selectedCategory);
 
     const getRecordIcon = (type: string) => {
@@ -74,8 +74,8 @@ export default function HealthRecordsScreen({ navigation }: Props) {
             </View>
 
             {/* Category Filters */}
-            <ScrollView 
-                horizontal 
+            <ScrollView
+                horizontal
                 showsHorizontalScrollIndicator={false}
                 style={styles.categoryScroll}
                 contentContainerStyle={styles.categoryContainer}
@@ -117,8 +117,8 @@ export default function HealthRecordsScreen({ navigation }: Props) {
                 ) : (
                     <View style={styles.recordsList}>
                         {filteredRecords.map(record => (
-                            <TouchableOpacity 
-                                key={record.id} 
+                            <TouchableOpacity
+                                key={record.id}
                                 style={styles.recordCard}
                                 onPress={() => console.log('View record:', record.id)}
                             >
@@ -152,7 +152,7 @@ export default function HealthRecordsScreen({ navigation }: Props) {
             </ScrollView>
 
             {/* Upload Button */}
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={styles.uploadButton}
                 onPress={() => console.log('Upload record')}
             >

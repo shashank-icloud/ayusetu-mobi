@@ -272,7 +272,7 @@ export default function ConsentManagementScreen({ navigation }: Props) {
                     <View style={styles.modalOverlay}>
                         <View style={styles.modalContent}>
                             <Text style={styles.modalTitle}>Consent Request Details</Text>
-                            
+
                             <View style={styles.modalSection}>
                                 <Text style={styles.modalLabel}>Requester:</Text>
                                 <Text style={styles.modalValue}>{selectedRequest.requesterName}</Text>

@@ -18,6 +18,11 @@ import LabDashboard from '../screens/dashboards/LabDashboard';
 import AmbulanceDashboard from '../screens/dashboards/AmbulanceDashboard';
 import HealthRecordsScreen from '../screens/patient/HealthRecordsScreen';
 import ConsentManagementScreen from '../screens/patient/ConsentManagementScreen';
+import ProfileScreen from '../screens/patient/ProfileScreen';
+import ABHAAddressManagementScreen from '../screens/patient/ABHAAddressManagementScreen';
+import ABHARecoveryScreen from '../screens/patient/ABHARecoveryScreen';
+import FamilyManagementScreen from '../screens/patient/FamilyManagementScreen';
+import EmailInputScreen from '../screens/EmailInputScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -27,6 +32,7 @@ export type RootStackParamList = {
     ChooseMethod: undefined;
     AadhaarInput: undefined;
     MobileInput: undefined;
+    EmailInput: undefined;
     OTPVerification: {
         method: 'aadhaar' | 'mobile';
         value: string;
@@ -46,6 +52,10 @@ export type RootStackParamList = {
     AmbulanceDashboard: undefined;
     HealthRecords: undefined;
     ConsentManagement: undefined;
+    Profile: undefined;
+    ABHAAddressManagement: undefined;
+    ABHARecovery: undefined;
+    FamilyManagement: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -60,6 +70,7 @@ export default function AppNavigator() {
             <Stack.Screen name="ChooseMethod" component={ChooseMethodScreen} />
             <Stack.Screen name="AadhaarInput" component={AadhaarInputScreen} />
             <Stack.Screen name="MobileInput" component={MobileInputScreen} />
+            <Stack.Screen name="EmailInput" component={EmailInputScreen} />
             <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />
             <Stack.Screen name="ABHASuccess" component={ABHASuccessScreen} />
             <Stack.Screen name="RoleSelection" component={RoleSelectionScreen} />
@@ -71,6 +82,10 @@ export default function AppNavigator() {
             <Stack.Screen name="AmbulanceDashboard" component={AmbulanceDashboard} />
             <Stack.Screen name="HealthRecords" component={HealthRecordsScreen} />
             <Stack.Screen name="ConsentManagement" component={ConsentManagementScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="ABHAAddressManagement" component={ABHAAddressManagementScreen} />
+            <Stack.Screen name="ABHARecovery" component={ABHARecoveryScreen} />
+            <Stack.Screen name="FamilyManagement" component={FamilyManagementScreen} />
         </Stack.Navigator>
     );
 }

@@ -52,6 +52,19 @@ export default function ChooseMethodScreen({ navigation }: Props) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    style={styles.methodCard}
+                    onPress={() => navigation.navigate('EmailInput')}
+                >
+                    <View style={styles.methodHeader}>
+                        <Text style={styles.methodIcon}>✉️</Text>
+                    </View>
+                    <Text style={styles.methodTitle}>Using Email Address</Text>
+                    <Text style={styles.methodDesc}>
+                        Create using email verification
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
                     style={styles.backLink}
                     onPress={() => navigation.goBack()}
                 >

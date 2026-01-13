@@ -199,6 +199,139 @@ export const abdmService = {
     },
 
     // ========================================
+    // Email-based ABHA Creation
+    // ========================================
+    async generateEmailOTP(email: string): Promise<{ txnId: string }> {
+        if (Config.DEVELOPER_MODE) {
+            await mockDelay();
+            console.log('🔧 DEV MODE: Generated Email OTP for:', email);
+            return { txnId: 'dev-txn-email-' + Date.now() };
+        }
+
+        try {
+            const token = await this.getSessionToken();
+            const response = await abdmApi.post(
+                '/v2/registration/email/generateOtp',
+                { email },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            return response.data;
+        } catch (error) {
+            console.error('Email OTP generation error:', error);
+            throw error;
+        }
+    },
+
+    async verifyEmailOTP(otp: string, txnId: string): Promise<any> {
+        if (Config.DEVELOPER_MODE) {
+            await mockDelay();
+            console.log('🔧 DEV MODE: Verified Email OTP:', otp);
+            return {
+                txnId: 'dev-verified-email-txn-' + Date.now(),
+                email: 'user@example.com',
+            };
+        }
+
+        try {
+            const token = await this.getSessionToken();
+            const response = await abdmApi.post(
+                '/v2/registration/email/verifyOtp',
+                { otp, txnId },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            return response.data;
+        } catch (error) {
+            console.error('Email OTP verification error:', error);
+            throw error;
+        }
+    },
+
+    async createABHAWithEmail(
+        txnId: string,
+        firstName: string,
+        lastName: string,
+        gender: 'M' | 'F' | 'O',
+        yearOfBirth: string,
+        email: string
+    ): Promise<any> {
+        if (Config.DEVELOPER_MODE) {
+            await mockDelay();
+            console.log('🔧 DEV MODE: Created ABHA with Email');
+            return {
+                healthIdNumber: Config.DEV_ABHA_NUMBER,
+                healthId: `${firstName.toLowerCase()}@abdm`,
+                name: `${firstName} ${lastName}`,
+                token: 'dev-jwt-token-12345',
+                email,
+                yearOfBirth,
+                gender,
+            };
+        }
+
+        try {
+            const token = await this.getSessionToken();
+            const response = await abdmApi.post(
+                '/v2/registration/email/createHealthId',
+                { txnId, firstName, lastName, gender, yearOfBirth, email },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            return response.data;
+        } catch (error) {
+            console.error('ABHA creation with email error:', error);
+            throw error;
+        }
+    },
+
+    // ========================================
+    // ABHA De-duplication & Validation
+    // ========================================
+    async checkDuplicateABHA(aadhaar?: string, mobile?: string, email?: string): Promise<any> {
+        if (Config.DEVELOPER_MODE) {
+            await mockDelay(800);
+            console.log('🔧 DEV MODE: Checking for duplicate ABHA');
+            // Simulate no duplicates found
+            return {
+                isDuplicate: false,
+                existingABHA: null,
+            };
+        }
+
+        try {
+            const token = await this.getSessionToken();
+            const response = await abdmApi.post(
+                '/v2/registration/checkDuplicate',
+                { aadhaar, mobile, email },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            return response.data;
+        } catch (error) {
+            console.error('Duplicate check error:', error);
+            throw error;
+        }
+    },
+
+    async resolveConflict(existingAbhaNumber: string, action: 'merge' | 'create_new'): Promise<any> {
+        if (Config.DEVELOPER_MODE) {
+            await mockDelay();
+            console.log('🔧 DEV MODE: Resolving conflict:', action);
+            return { success: true };
+        }
+
+        try {
+            const token = await this.getSessionToken();
+            const response = await abdmApi.post(
+                '/v2/registration/resolveConflict',
+                { existingAbhaNumber, action },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            return response.data;
+        } catch (error) {
+            console.error('Conflict resolution error:', error);
+            throw error;
+        }
+    },
+
+    // ========================================
     // ABHA Login/Authentication
     // ========================================
     async loginWithABHA(abhaNumber: string): Promise<{ txnId: string }> {

@@ -28,7 +28,7 @@ export default function ChildAccountManagementScreen({ navigation }: Props) {
             accessLevel: 'full',
         },
     ]);
-    
+
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [childName, setChildName] = useState('');
     const [dob, setDob] = useState('');
@@ -59,7 +59,7 @@ export default function ChildAccountManagementScreen({ navigation }: Props) {
             setChildName('');
             setDob('');
             setGuardianName('');
-            
+
             Alert.alert(
                 'Success',
                 `Child account created!\n\nABHA Number: ${newChild.abhaNumber}\n\nYou have full access to manage this account.`
@@ -192,7 +192,7 @@ export default function ChildAccountManagementScreen({ navigation }: Props) {
 
                         <View style={styles.infoBox}>
                             <Text style={styles.infoText}>
-                                ℹ️ Child accounts are automatically linked to the guardian's ABHA. 
+                                ℹ️ Child accounts are automatically linked to the guardian's ABHA.
                                 You'll have full management access until the child turns 18.
                             </Text>
                         </View>

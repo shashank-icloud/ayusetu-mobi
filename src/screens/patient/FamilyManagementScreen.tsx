@@ -257,7 +257,7 @@ export default function FamilyManagementScreen({ navigation }: Props) {
                 {/* Quick Links */}
                 <View style={styles.quickLinksSection}>
                     <Text style={styles.quickLinksTitle}>Specialized Management</Text>
-                    
+
                     <TouchableOpacity
                         style={styles.quickLinkCard}
                         onPress={() => navigation.navigate('ChildAccountManagement')}

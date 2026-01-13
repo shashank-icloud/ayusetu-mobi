@@ -26,7 +26,7 @@ export default function ElderlyCareDelegationScreen({ navigation }: Props) {
             isPrimary: true,
         },
     ]);
-    
+
     const [showAddForm, setShowAddForm] = useState(false);
     const [delegateName, setDelegateName] = useState('');
     const [delegateAbha, setDelegateAbha] = useState('');
@@ -61,7 +61,7 @@ export default function ElderlyCareDelegationScreen({ navigation }: Props) {
             setDelegates([...delegates, newDelegate]);
             setShowAddForm(false);
             resetForm();
-            
+
             Alert.alert(
                 'Success',
                 `${delegateName} has been added as a care delegate with ${accessLevel.replace('_', ' ')} access.`
@@ -208,8 +208,8 @@ export default function ElderlyCareDelegationScreen({ navigation }: Props) {
                         />
 
                         <Text style={styles.label}>Relationship *</Text>
-                        <ScrollView 
-                            horizontal 
+                        <ScrollView
+                            horizontal
                             showsHorizontalScrollIndicator={false}
                             style={styles.relationshipScroll}
                         >
@@ -316,7 +316,7 @@ export default function ElderlyCareDelegationScreen({ navigation }: Props) {
                                             <Text style={styles.actionButtonText}>Set Primary</Text>
                                         </TouchableOpacity>
                                     )}
-                                    
+
                                     <TouchableOpacity
                                         style={[styles.actionButton, styles.secondaryButton]}
                                         onPress={() => handleModifyAccess(delegate.id)}

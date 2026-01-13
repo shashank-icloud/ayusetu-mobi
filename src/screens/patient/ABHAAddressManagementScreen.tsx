@@ -118,7 +118,7 @@ export default function ABHAAddressManagementScreen({ navigation }: Props) {
                 {/* Current Addresses */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Your ABHA Addresses ({addresses.length})</Text>
-                    
+
                     {addresses.map((addr, index) => (
                         <View key={index} style={styles.addressCard}>
                             <View style={styles.addressContent}>
@@ -150,7 +150,7 @@ export default function ABHAAddressManagementScreen({ navigation }: Props) {
                             </View>
                         </View>
                     ))}
-                    
+
                     <Text style={styles.addressNote}>
                         💡 Your primary address is used for receiving health records
                     </Text>

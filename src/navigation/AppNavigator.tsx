@@ -52,7 +52,7 @@ export type RootStackParamList = {
     PharmacyDashboard: undefined;
     LabDashboard: undefined;
     AmbulanceDashboard: undefined;
-    HealthRecords: undefined;
+    HealthRecords: { initialView?: 'list' | 'timeline' } | undefined;
     ConsentManagement: undefined;
     Profile: undefined;
     ABHAAddressManagement: undefined;

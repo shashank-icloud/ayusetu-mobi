@@ -72,7 +72,7 @@ export default function PatientDashboard({ navigation }: Props) {
             title: 'Health Timeline',
             icon: '📊',
             color: '#00BCD4',
-            onPress: () => console.log('Health Timeline'),
+            onPress: () => navigation.navigate('HealthRecords', { initialView: 'timeline' }),
         },
         {
             id: 'download',

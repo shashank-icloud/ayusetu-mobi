@@ -6,10 +6,15 @@ import { RootStackParamList } from '../../navigation/AppNavigator';
 type Props = NativeStackScreenProps<RootStackParamList, 'ABHAAddressManagement'>;
 
 export default function ABHAAddressManagementScreen({ navigation }: Props) {
-    const [currentAddress, setCurrentAddress] = useState('user@abdm');
+    const [addresses, setAddresses] = useState([
+        { address: 'user@abdm', isPrimary: true, createdDate: '2025-01-01' },
+        { address: 'john.doe@abdm', isPrimary: false, createdDate: '2025-12-15' },
+    ]);
     const [newAddress, setNewAddress] = useState('');
     const [isChecking, setIsChecking] = useState(false);
     const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+
+    const primaryAddress = addresses.find(a => a.isPrimary)?.address || 'user@abdm';
 
     const checkAvailability = async () => {
         if (newAddress.length < 4) {
@@ -33,17 +38,65 @@ export default function ABHAAddressManagementScreen({ navigation }: Props) {
         }
 
         Alert.alert(
-            'Update ABHA Address',
-            `Change your ABHA address to ${newAddress}@abdm?`,
+            'Create ABHA Address',
+            `Create new ABHA address ${newAddress}@abdm?`,
+            [
+                { text: 'Cancel', style: 'cancel' },
+                {
+                    text: 'Create',
+                    onPress: () => {
+                        setAddresses([...addresses, {
+                            address: `${newAddress}@abdm`,
+                            isPrimary: false,
+                            createdDate: new Date().toISOString().split('T')[0]
+                        }]);
+                        setNewAddress('');
+                        setIsAvailable(null);
+                        Alert.alert('Success', 'ABHA address created successfully');
+                    }
+                }
+            ]
+        );
+    };
+
+    const handleSetPrimary = (address: string) => {
+        Alert.alert(
+            'Set Primary Address',
+            `Set ${address} as your primary ABHA address?`,
             [
                 { text: 'Cancel', style: 'cancel' },
                 {
                     text: 'Confirm',
                     onPress: () => {
-                        setCurrentAddress(`${newAddress}@abdm`);
-                        setNewAddress('');
-                        setIsAvailable(null);
-                        Alert.alert('Success', 'ABHA address updated successfully');
+                        setAddresses(addresses.map(a => ({
+                            ...a,
+                            isPrimary: a.address === address
+                        })));
+                        Alert.alert('Success', 'Primary address updated');
+                    }
+                }
+            ]
+        );
+    };
+
+    const handleDeleteAddress = (address: string) => {
+        const addressObj = addresses.find(a => a.address === address);
+        if (addressObj?.isPrimary) {
+            Alert.alert('Error', 'Cannot delete primary address. Set another address as primary first.');
+            return;
+        }
+
+        Alert.alert(
+            'Delete Address',
+            `Delete ${address}?`,
+            [
+                { text: 'Cancel', style: 'cancel' },
+                {
+                    text: 'Delete',
+                    style: 'destructive',
+                    onPress: () => {
+                        setAddresses(addresses.filter(a => a.address !== address));
+                        Alert.alert('Success', 'Address deleted');
                     }
                 }
             ]
@@ -62,15 +115,45 @@ export default function ABHAAddressManagementScreen({ navigation }: Props) {
             </View>
 
             <ScrollView style={styles.content}>
-                {/* Current Address */}
+                {/* Current Addresses */}
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Current ABHA Address</Text>
-                    <View style={styles.currentAddressCard}>
-                        <Text style={styles.currentAddress}>{currentAddress}</Text>
-                        <Text style={styles.addressNote}>
-                            This is your unique ABHA address for receiving health records
-                        </Text>
-                    </View>
+                    <Text style={styles.sectionTitle}>Your ABHA Addresses ({addresses.length})</Text>
+                    
+                    {addresses.map((addr, index) => (
+                        <View key={index} style={styles.addressCard}>
+                            <View style={styles.addressContent}>
+                                <Text style={styles.addressText}>{addr.address}</Text>
+                                <Text style={styles.addressDate}>Created: {addr.createdDate}</Text>
+                                {addr.isPrimary && (
+                                    <View style={styles.primaryBadge}>
+                                        <Text style={styles.primaryText}>Primary</Text>
+                                    </View>
+                                )}
+                            </View>
+                            <View style={styles.addressActions}>
+                                {!addr.isPrimary && (
+                                    <>
+                                        <TouchableOpacity
+                                            style={styles.setPrimaryButton}
+                                            onPress={() => handleSetPrimary(addr.address)}
+                                        >
+                                            <Text style={styles.setPrimaryText}>Set Primary</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity
+                                            style={styles.deleteButton}
+                                            onPress={() => handleDeleteAddress(addr.address)}
+                                        >
+                                            <Text style={styles.deleteText}>🗑️</Text>
+                                        </TouchableOpacity>
+                                    </>
+                                )}
+                            </View>
+                        </View>
+                    ))}
+                    
+                    <Text style={styles.addressNote}>
+                        💡 Your primary address is used for receiving health records
+                    </Text>
                 </View>
 
                 {/* Create New Address */}
@@ -206,11 +289,65 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 8,
     },
-    currentAddress: {
-        fontSize: 20,
+    addressCard: {
+        backgroundColor: '#f5f5f5',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: '#e0e0e0',
+    },
+    addressContent: {
+        marginBottom: 8,
+    },
+    addressText: {
+        fontSize: 18,
         fontWeight: '600',
         color: '#000',
+        marginBottom: 4,
+    },
+    addressDate: {
+        fontSize: 12,
+        color: '#666',
         marginBottom: 8,
+    },
+    primaryBadge: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#4CAF50',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 12,
+    },
+    primaryText: {
+        fontSize: 11,
+        fontWeight: '700',
+        color: '#fff',
+    },
+    addressActions: {
+        flexDirection: 'row',
+        gap: 8,
+    },
+    setPrimaryButton: {
+        flex: 1,
+        backgroundColor: '#000',
+        paddingVertical: 10,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    setPrimaryText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#fff',
+    },
+    deleteButton: {
+        width: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFEBEE',
+        borderRadius: 8,
+    },
+    deleteText: {
+        fontSize: 20,
     },
     addressNote: {
         fontSize: 14,

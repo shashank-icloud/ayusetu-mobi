@@ -23,6 +23,8 @@ import ABHAAddressManagementScreen from '../screens/patient/ABHAAddressManagemen
 import ABHARecoveryScreen from '../screens/patient/ABHARecoveryScreen';
 import FamilyManagementScreen from '../screens/patient/FamilyManagementScreen';
 import EmailInputScreen from '../screens/EmailInputScreen';
+import ChildAccountManagementScreen from '../screens/patient/ChildAccountManagementScreen';
+import ElderlyCareDelegationScreen from '../screens/patient/ElderlyCareDelegationScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -56,6 +58,8 @@ export type RootStackParamList = {
     ABHAAddressManagement: undefined;
     ABHARecovery: undefined;
     FamilyManagement: undefined;
+    ChildAccountManagement: undefined;
+    ElderlyCareDelegation: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -86,6 +90,8 @@ export default function AppNavigator() {
             <Stack.Screen name="ABHAAddressManagement" component={ABHAAddressManagementScreen} />
             <Stack.Screen name="ABHARecovery" component={ABHARecoveryScreen} />
             <Stack.Screen name="FamilyManagement" component={FamilyManagementScreen} />
+            <Stack.Screen name="ChildAccountManagement" component={ChildAccountManagementScreen} />
+            <Stack.Screen name="ElderlyCareDelegation" component={ElderlyCareDelegationScreen} />
         </Stack.Navigator>
     );
 }

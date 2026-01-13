@@ -132,7 +132,7 @@ export default function FamilyManagementScreen({ navigation }: Props) {
                 {showAddForm && (
                     <View style={styles.addForm}>
                         <Text style={styles.formTitle}>Link Family Member</Text>
-                        
+
                         <Text style={styles.label}>ABHA Number</Text>
                         <TextInput
                             style={styles.input}
@@ -143,8 +143,8 @@ export default function FamilyManagementScreen({ navigation }: Props) {
                         />
 
                         <Text style={styles.label}>Relationship</Text>
-                        <ScrollView 
-                            horizontal 
+                        <ScrollView
+                            horizontal
                             showsHorizontalScrollIndicator={false}
                             style={styles.relationshipScroll}
                         >
@@ -252,6 +252,39 @@ export default function FamilyManagementScreen({ navigation }: Props) {
                         • Manage elderly care delegation{'\n'}
                         • All changes require consent verification
                     </Text>
+                </View>
+
+                {/* Quick Links */}
+                <View style={styles.quickLinksSection}>
+                    <Text style={styles.quickLinksTitle}>Specialized Management</Text>
+                    
+                    <TouchableOpacity
+                        style={styles.quickLinkCard}
+                        onPress={() => navigation.navigate('ChildAccountManagement')}
+                    >
+                        <Text style={styles.quickLinkIcon}>👶</Text>
+                        <View style={styles.quickLinkContent}>
+                            <Text style={styles.quickLinkTitle}>Child Accounts</Text>
+                            <Text style={styles.quickLinkDesc}>
+                                Manage accounts for children under 18
+                            </Text>
+                        </View>
+                        <Text style={styles.quickLinkArrow}>→</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.quickLinkCard}
+                        onPress={() => navigation.navigate('ElderlyCareDelegation')}
+                    >
+                        <Text style={styles.quickLinkIcon}>👵</Text>
+                        <View style={styles.quickLinkContent}>
+                            <Text style={styles.quickLinkTitle}>Elderly Care</Text>
+                            <Text style={styles.quickLinkDesc}>
+                                Delegate care to trusted family members
+                            </Text>
+                        </View>
+                        <Text style={styles.quickLinkArrow}>→</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{ height: 40 }} />
@@ -483,5 +516,48 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#666',
         lineHeight: 22,
+    },
+    quickLinksSection: {
+        backgroundColor: '#fff',
+        margin: 16,
+        padding: 20,
+        borderRadius: 12,
+    },
+    quickLinksTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#000',
+        marginBottom: 16,
+    },
+    quickLinkCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#f8f9fa',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: '#e0e0e0',
+    },
+    quickLinkIcon: {
+        fontSize: 32,
+        marginRight: 16,
+    },
+    quickLinkContent: {
+        flex: 1,
+    },
+    quickLinkTitle: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#000',
+        marginBottom: 4,
+    },
+    quickLinkDesc: {
+        fontSize: 13,
+        color: '#666',
+    },
+    quickLinkArrow: {
+        fontSize: 24,
+        color: '#999',
     },
 });

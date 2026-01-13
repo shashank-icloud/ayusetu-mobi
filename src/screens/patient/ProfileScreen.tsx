@@ -26,7 +26,7 @@ export default function ProfileScreen({ navigation }: Props) {
         mobileNumbers: ['9876543210'],
         emails: ['user@example.com'],
     });
-    
+
     const [isEditing, setIsEditing] = useState(false);
     const [newMobile, setNewMobile] = useState('');
     const [newEmail, setNewEmail] = useState('');
@@ -55,7 +55,7 @@ export default function ProfileScreen({ navigation }: Props) {
             setLoading(true);
             // Generate OTP for mobile verification
             await abdmService.generateMobileOTP(newMobile);
-            
+
             Alert.alert(
                 'OTP Sent',
                 'Please enter the OTP sent to your mobile number',
@@ -169,7 +169,7 @@ export default function ProfileScreen({ navigation }: Props) {
                     <Text style={[styles.cardLabel, { marginTop: 12 }]}>ABHA Address</Text>
                     <View style={styles.addressRow}>
                         <Text style={styles.abhaAddress}>{profile.abhaAddress}</Text>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             onPress={() => navigation.navigate('ABHAAddressManagement')}
                             style={styles.manageButton}
                         >
@@ -181,7 +181,7 @@ export default function ProfileScreen({ navigation }: Props) {
                 {/* Basic Info */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Basic Information</Text>
-                    
+
                     <View style={styles.infoRow}>
                         <Text style={styles.label}>Full Name</Text>
                         <Text style={styles.value}>{profile.name}</Text>
@@ -207,7 +207,7 @@ export default function ProfileScreen({ navigation }: Props) {
                 {/* Mobile Numbers */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Mobile Numbers</Text>
-                    
+
                     {profile.mobileNumbers.map((mobile, index) => (
                         <View key={index} style={styles.contactItem}>
                             <View style={styles.contactLeft}>
@@ -237,7 +237,7 @@ export default function ProfileScreen({ navigation }: Props) {
                                 value={newMobile}
                                 onChangeText={setNewMobile}
                             />
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.addButton}
                                 onPress={handleAddMobile}
                                 disabled={loading}
@@ -251,7 +251,7 @@ export default function ProfileScreen({ navigation }: Props) {
                 {/* Email Addresses */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Email Addresses</Text>
-                    
+
                     {profile.emails.map((email, index) => (
                         <View key={index} style={styles.contactItem}>
                             <View style={styles.contactLeft}>
@@ -274,7 +274,7 @@ export default function ProfileScreen({ navigation }: Props) {
                                 value={newEmail}
                                 onChangeText={setNewEmail}
                             />
-                            <TouchableOpacity 
+                            <TouchableOpacity
                                 style={styles.addButton}
                                 onPress={handleAddEmail}
                                 disabled={loading}
@@ -287,7 +287,7 @@ export default function ProfileScreen({ navigation }: Props) {
 
                 {/* Account Actions */}
                 <View style={styles.section}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.actionButton}
                         onPress={() => navigation.navigate('ABHARecovery')}
                     >
@@ -296,7 +296,7 @@ export default function ProfileScreen({ navigation }: Props) {
                         <Text style={styles.actionArrow}>→</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.actionButton}
                         onPress={() => Alert.alert('Download', 'ABHA card will be downloaded')}
                     >
@@ -310,7 +310,7 @@ export default function ProfileScreen({ navigation }: Props) {
             </ScrollView>
 
             {isEditing && (
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.saveButton}
                     onPress={handleUpdateProfile}
                     disabled={loading}

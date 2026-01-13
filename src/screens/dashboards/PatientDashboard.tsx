@@ -118,7 +118,7 @@ export default function PatientDashboard({ navigation }: Props) {
                     <Text style={styles.greeting}>Hello,</Text>
                     <Text style={styles.userName}>Patient Name</Text>
                 </View>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.profileButton}
                     onPress={() => navigation.navigate('Profile')}
                 >

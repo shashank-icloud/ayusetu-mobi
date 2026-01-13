@@ -132,8 +132,8 @@ export default function ABHARecoveryScreen({ navigation }: Props) {
                 style={styles.input}
                 placeholder={
                     method === 'abha' ? '12-3456-7890-1234' :
-                    method === 'mobile' ? '10-digit mobile' :
-                    '12-digit Aadhaar'
+                        method === 'mobile' ? '10-digit mobile' :
+                            '12-digit Aadhaar'
                 }
                 keyboardType="number-pad"
                 value={inputValue}

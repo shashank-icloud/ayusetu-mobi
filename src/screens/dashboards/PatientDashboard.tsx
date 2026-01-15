@@ -54,6 +54,13 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('HealthRecords'),
         },
         {
+            id: 'insurance',
+            title: 'Insurance',
+            icon: '💰',
+            color: '#10b981',
+            onPress: () => navigation.navigate('InsurancePolicies'),
+        },
+        {
             id: 'consent',
             title: 'Manage Consent',
             icon: '🔒',

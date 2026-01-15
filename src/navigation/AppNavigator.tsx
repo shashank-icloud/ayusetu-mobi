@@ -38,7 +38,7 @@ import { DiseaseTrackersScreen } from '../screens/DiseaseTrackersScreen';
 import { MedicationAdherenceScreen } from '../screens/MedicationAdherenceScreen';
 import { LifestyleTrackingScreen } from '../screens/LifestyleTrackingScreen';
 import { SymptomJournalScreen } from '../screens/SymptomJournalScreen';
-import AppointmentsScreen from '../screens/AppointmentsScreen';
+import { AppointmentsScreen } from '../screens/AppointmentsScreen';
 import BookAppointmentScreen from '../screens/BookAppointmentScreen';
 import CarePlansScreen from '../screens/CarePlansScreen';
 import RemindersScreen from '../screens/RemindersScreen';
@@ -57,6 +57,10 @@ import GenerateAuditReportScreen from '../screens/GenerateAuditReportScreen';
 import LanguageSettingsScreen from '../screens/LanguageSettingsScreen';
 import AccessibilitySettingsScreen from '../screens/AccessibilitySettingsScreen';
 import OfflineModeScreen from '../screens/OfflineModeScreen';
+import InsurancePoliciesScreen from '../screens/InsurancePoliciesScreen';
+import ClaimsTrackingScreen from '../screens/ClaimsTrackingScreen';
+import CashlessFlowScreen from '../screens/CashlessFlowScreen';
+import CostEstimationScreen from '../screens/CostEstimationScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -138,6 +142,11 @@ export type RootStackParamList = {
     LanguageSettings: undefined;
     AccessibilitySettings: undefined;
     OfflineMode: undefined;
+    // Category 11: Insurance & Financial Health
+    InsurancePolicies: undefined;
+    ClaimsTracking: { policyId?: string } | undefined;
+    CashlessFlow: { policyId?: string } | undefined;
+    CostEstimation: { policyId?: string } | undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -204,6 +213,10 @@ export default function AppNavigator() {
             <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
             <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
             <Stack.Screen name="OfflineMode" component={OfflineModeScreen} />
+            <Stack.Screen name="InsurancePolicies" component={InsurancePoliciesScreen} />
+            <Stack.Screen name="ClaimsTracking" component={ClaimsTrackingScreen} />
+            <Stack.Screen name="CashlessFlow" component={CashlessFlowScreen} />
+            <Stack.Screen name="CostEstimation" component={CostEstimationScreen} />
         </Stack.Navigator>
     );
 }

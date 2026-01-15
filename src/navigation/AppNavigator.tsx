@@ -49,6 +49,11 @@ import SecuritySettingsScreen from '../screens/SecuritySettingsScreen';
 import DeviceManagementScreen from '../screens/DeviceManagementScreen';
 import SessionManagementScreen from '../screens/SessionManagementScreen';
 import SecurityEventsScreen from '../screens/SecurityEventsScreen';
+import ComplianceDashboardScreen from '../screens/ComplianceDashboardScreen';
+import DataAccessLogsScreen from '../screens/DataAccessLogsScreen';
+import ConsentHistoryScreen from '../screens/ConsentHistoryScreen';
+import ABDMLogsScreen from '../screens/ABDMLogsScreen';
+import GenerateAuditReportScreen from '../screens/GenerateAuditReportScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -120,6 +125,12 @@ export type RootStackParamList = {
     ChangePIN: undefined;
     DataVisibilitySettings: undefined;
     SectionLockSettings: undefined;
+    // Category 9: Compliance & Audit Transparency
+    ComplianceDashboard: undefined;
+    DataAccessLogs: undefined;
+    ConsentHistory: undefined;
+    ABDMLogs: undefined;
+    GenerateAuditReport: undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -178,6 +189,11 @@ export default function AppNavigator() {
             <Stack.Screen name="EmergencyCard" component={EmergencyCardScreen} />
             <Stack.Screen name="SOS" component={SOSScreen} />
             <Stack.Screen name="EmergencySettings" component={EmergencySettingsScreen} />
+            <Stack.Screen name="ComplianceDashboard" component={ComplianceDashboardScreen} />
+            <Stack.Screen name="DataAccessLogs" component={DataAccessLogsScreen} />
+            <Stack.Screen name="ConsentHistory" component={ConsentHistoryScreen} />
+            <Stack.Screen name="ABDMLogs" component={ABDMLogsScreen} />
+            <Stack.Screen name="GenerateAuditReport" component={GenerateAuditReportScreen} />
         </Stack.Navigator>
     );
 }

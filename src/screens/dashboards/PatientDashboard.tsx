@@ -222,6 +222,13 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('SecuritySettings'),
         },
         {
+            id: 'compliance',
+            title: 'Compliance',
+            icon: '📊',
+            color: '#0891b2',
+            onPress: () => navigation.navigate('ComplianceDashboard'),
+        },
+        {
             id: 'profile',
             title: 'My Profile',
             icon: '⚙️',

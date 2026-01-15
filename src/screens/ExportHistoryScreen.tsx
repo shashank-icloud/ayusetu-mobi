@@ -67,7 +67,7 @@ export default function ExportHistoryScreen({ navigation }: Props) {
                 );
                 return;
             }
-            
+
             Alert.alert('Error', 'Export is not ready for download');
             return;
         }

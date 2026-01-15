@@ -46,7 +46,7 @@ export default function MessagingScreen({ navigation, route }: Props) {
         try {
             const data = await notificationsService.getConversations();
             setConversations(data);
-            
+
             // Auto-select first conversation if no conversation selected
             if (!selectedConversation && data.length > 0) {
                 handleSelectConversation(data[0]);
@@ -60,7 +60,7 @@ export default function MessagingScreen({ navigation, route }: Props) {
 
     const handleSelectConversation = async (conversation: Conversation) => {
         setSelectedConversation(conversation);
-        
+
         try {
             const msgs = await notificationsService.getMessages(conversation.id);
             setMessages(msgs);
@@ -75,7 +75,7 @@ export default function MessagingScreen({ navigation, route }: Props) {
         const recipient = selectedConversation.participants.find(
             p => p.userType !== 'patient'
         );
-        
+
         if (!recipient) return;
 
         setSending(true);
@@ -103,9 +103,9 @@ export default function MessagingScreen({ navigation, route }: Props) {
         const hours = Math.floor(diff / 3600000);
 
         if (hours < 24) {
-            return date.toLocaleTimeString('en-IN', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
+            return date.toLocaleTimeString('en-IN', {
+                hour: '2-digit',
+                minute: '2-digit'
             });
         }
 

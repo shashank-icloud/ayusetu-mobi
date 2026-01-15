@@ -13,7 +13,7 @@ export type StorageTier = 'free' | 'standard' | 'premium' | 'unlimited';
 
 export type BackupFrequency = 'manual' | 'daily' | 'weekly' | 'realtime';
 
-export type PartnerServiceType = 
+export type PartnerServiceType =
     | 'lab_testing'
     | 'pharmacy'
     | 'ambulance'

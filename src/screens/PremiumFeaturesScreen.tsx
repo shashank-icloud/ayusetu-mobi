@@ -135,7 +135,7 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                 <Text style={styles.sectionSubtitle}>
                     Unlock powerful features to manage your health better
                 </Text>
-                
+
                 {['storage', 'analytics', 'support', 'family', 'export', 'security'].map(category => {
                     const categoryFeatures = features.filter(f => f.category === category);
                     if (categoryFeatures.length === 0) return null;
@@ -174,10 +174,10 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                 {plans.map(plan => {
                     const isCurrentPlan = currentSubscription?.planId === plan.id;
                     const canUpgrade = !isCurrentPlan && (
-                        plan.tier !== 'free' && 
-                        (currentSubscription?.tier === 'free' || 
-                         (currentSubscription?.tier === 'basic' && (plan.tier === 'premium' || plan.tier === 'family')) ||
-                         (currentSubscription?.tier === 'premium' && plan.tier === 'family'))
+                        plan.tier !== 'free' &&
+                        (currentSubscription?.tier === 'free' ||
+                            (currentSubscription?.tier === 'basic' && (plan.tier === 'premium' || plan.tier === 'family')) ||
+                            (currentSubscription?.tier === 'premium' && plan.tier === 'family'))
                     );
 
                     return (
@@ -196,7 +196,7 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                                     <Text style={styles.popularBadgeText}>⭐ POPULAR</Text>
                                 </View>
                             )}
-                            
+
                             <View style={styles.planHeader}>
                                 <Text style={[styles.planName, { color: getTierColor(plan.tier) }]}>
                                     {plan.name}
@@ -207,14 +207,14 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                                     </View>
                                 )}
                             </View>
-                            
+
                             <Text style={styles.planDescription}>{plan.description}</Text>
-                            
+
                             <View style={styles.planPricing}>
                                 <Text style={styles.planPrice}>₹{plan.price}</Text>
                                 <Text style={styles.planPeriod}>/{plan.billingPeriod}</Text>
                             </View>
-                            
+
                             <View style={styles.planHighlights}>
                                 <Text style={styles.planHighlight}>
                                     💾 {formatStorage(plan.storageLimit)} storage
@@ -231,7 +231,7 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                                     </Text>
                                 )}
                             </View>
-                            
+
                             <View style={styles.planFeatures}>
                                 {plan.features.map((feature, index) => (
                                     <View key={index} style={styles.planFeatureItem}>
@@ -240,7 +240,7 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                                     </View>
                                 ))}
                             </View>
-                            
+
                             {canUpgrade && (
                                 <TouchableOpacity
                                     style={[
@@ -254,7 +254,7 @@ export default function PremiumFeaturesScreen({ navigation }: Props) {
                                     </Text>
                                 </TouchableOpacity>
                             )}
-                            
+
                             {isCurrentPlan && (
                                 <View style={styles.currentPlanButton}>
                                     <Text style={styles.currentPlanButtonText}>Current Plan</Text>

@@ -328,7 +328,7 @@ class DataExportService {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 300));
             const found = mockExportHistory.find(e => e.id === exportId);
             if (found) return found;
-            
+
             // Return a processing export
             return {
                 id: exportId,
@@ -350,7 +350,7 @@ class DataExportService {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
             const found = mockExportHistory.find(e => e.id === exportId);
-            
+
             return {
                 url: found?.downloadUrl || `https://storage.example.com/exports/${exportId}.pdf`,
                 expiresAt: found?.expiresAt || new Date(Date.now() + 3600000).toISOString(), // 1 hour
@@ -393,7 +393,7 @@ class DataExportService {
     async getReportTemplates(category?: string): Promise<ReportTemplate[]> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-            return category 
+            return category
                 ? mockReportTemplates.filter(t => t.category === category)
                 : mockReportTemplates;
         }

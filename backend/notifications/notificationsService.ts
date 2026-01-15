@@ -277,7 +277,7 @@ class NotificationsService {
     async updateNotificationSettings(request: UpdateNotificationPreferencesRequest): Promise<NotificationSettings> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-            
+
             const updated: NotificationSettings = {
                 ...mockNotificationSettings,
                 ...request,
@@ -317,12 +317,12 @@ class NotificationsService {
     async getNotifications(status?: 'unread' | 'read' | 'archived', limit?: number): Promise<Notification[]> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-            
+
             let filtered = mockNotifications;
             if (status) {
                 filtered = filtered.filter(n => n.status === status);
             }
-            
+
             return limit ? filtered.slice(0, limit) : filtered;
         }
 
@@ -369,10 +369,10 @@ class NotificationsService {
     async getNotificationBadge(): Promise<NotificationBadge> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 200));
-            
+
             const unread = mockNotifications.filter(n => n.status === 'unread');
             const urgent = unread.filter(n => n.priority === 'urgent' || n.priority === 'high');
-            
+
             return {
                 total: mockNotifications.length,
                 unread: unread.length,
@@ -408,10 +408,10 @@ class NotificationsService {
             return limit ? filtered.slice(0, limit) : filtered;
         }
 
-        const url = limit 
+        const url = limit
             ? `${this.baseUrl}/conversations/${conversationId}/messages?limit=${limit}`
             : `${this.baseUrl}/conversations/${conversationId}/messages`;
-        
+
         const response = await fetch(url);
         return response.json();
     }
@@ -420,7 +420,7 @@ class NotificationsService {
     async sendMessage(request: SendMessageRequest): Promise<Message> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 800));
-            
+
             const newMessage: Message = {
                 id: `msg-${Date.now()}`,
                 conversationId: request.conversationId || `conv-${Date.now()}`,
@@ -451,7 +451,7 @@ class NotificationsService {
     async getNotificationStatistics(): Promise<NotificationStatistics> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-            
+
             return {
                 totalSent: 156,
                 totalRead: 142,
@@ -485,7 +485,7 @@ class NotificationsService {
     async getMessageStatistics(): Promise<MessageStatistics> {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-            
+
             return {
                 totalConversations: 8,
                 activeConversations: 3,

@@ -583,7 +583,7 @@ class MonetizationService {
             }
             return mockPartnerServices;
         }
-        const url = type 
+        const url = type
             ? `${Config.getBaseUrl()}/api/partners/services?type=${type}`
             : `${Config.getBaseUrl()}/api/partners/services`;
         const response = await fetch(url);

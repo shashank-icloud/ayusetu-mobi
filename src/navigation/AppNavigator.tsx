@@ -74,6 +74,10 @@ import MessagingScreen from '../screens/MessagingScreen';
 import PremiumFeaturesScreen from '../screens/PremiumFeaturesScreen';
 import CloudStorageScreen from '../screens/CloudStorageScreen';
 import PartnerServicesScreen from '../screens/PartnerServicesScreen';
+import AIAssistantScreen from '../screens/AIAssistantScreen';
+import WearablesScreen from '../screens/WearablesScreen';
+import PredictiveInsightsScreen from '../screens/PredictiveInsightsScreen';
+import TelemedicineScreen from '../screens/TelemedicineScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -177,6 +181,11 @@ export type RootStackParamList = {
     PremiumFeatures: undefined;
     CloudStorage: undefined;
     PartnerServices: undefined;
+    // Category 16: Future-Ready Features
+    AIAssistant: undefined;
+    Wearables: undefined;
+    PredictiveInsights: undefined;
+    Telemedicine: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -258,6 +267,10 @@ export default function AppNavigator() {
             <Stack.Screen name="PremiumFeatures" component={PremiumFeaturesScreen} options={{ title: 'Premium Features' }} />
             <Stack.Screen name="CloudStorage" component={CloudStorageScreen} options={{ title: 'Cloud Storage' }} />
             <Stack.Screen name="PartnerServices" component={PartnerServicesScreen} options={{ title: 'Partner Services' }} />
+            <Stack.Screen name="AIAssistant" component={AIAssistantScreen} options={{ title: 'AI Health Assistant' }} />
+            <Stack.Screen name="Wearables" component={WearablesScreen} options={{ title: 'Wearables' }} />
+            <Stack.Screen name="PredictiveInsights" component={PredictiveInsightsScreen} options={{ title: 'Predictive Insights' }} />
+            <Stack.Screen name="Telemedicine" component={TelemedicineScreen} options={{ title: 'Telemedicine' }} />
         </Stack.Navigator>
     );
 }

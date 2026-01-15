@@ -147,7 +147,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
             {/* Storage Overview */}
             <View style={styles.overviewSection}>
                 <Text style={styles.sectionTitle}>Storage Overview</Text>
-                
+
                 <View style={styles.storageCard}>
                     <View style={styles.storageHeader}>
                         <Text style={styles.storageTitle}>Cloud Storage</Text>
@@ -155,11 +155,11 @@ export default function CloudStorageScreen({ navigation }: Props) {
                             <Text style={styles.tierBadgeText}>{storage.tier.toUpperCase()}</Text>
                         </View>
                     </View>
-                    
+
                     <View style={styles.storageBar}>
                         <View style={[styles.storageBarFill, { width: `${storagePercentage}%` }]} />
                     </View>
-                    
+
                     <View style={styles.storageStats}>
                         <Text style={styles.storageUsed}>
                             {formatBytes(storage.usedStorage)} used
@@ -168,7 +168,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
                             of {formatBytes(storage.totalStorage)}
                         </Text>
                     </View>
-                    
+
                     <View style={styles.storageDetails}>
                         <View style={styles.storageDetailItem}>
                             <Text style={styles.storageDetailIcon}>📁</Text>
@@ -187,7 +187,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
             {/* Storage Breakdown */}
             <View style={styles.breakdownSection}>
                 <Text style={styles.sectionTitle}>Storage Breakdown</Text>
-                
+
                 {breakdown.map((item, index) => (
                     <View key={index} style={styles.breakdownItem}>
                         <View style={styles.breakdownHeader}>
@@ -213,7 +213,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
             {/* Backup Settings */}
             <View style={styles.settingsSection}>
                 <Text style={styles.sectionTitle}>Backup Settings</Text>
-                
+
                 <View style={styles.settingItem}>
                     <View style={styles.settingInfo}>
                         <Text style={styles.settingLabel}>Auto Backup</Text>
@@ -309,7 +309,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
             {/* Backup History */}
             <View style={styles.historySection}>
                 <Text style={styles.sectionTitle}>Backup History</Text>
-                
+
                 {backupHistory.length === 0 ? (
                     <View style={styles.emptyState}>
                         <Text style={styles.emptyIcon}>📦</Text>
@@ -355,10 +355,10 @@ export default function CloudStorageScreen({ navigation }: Props) {
                 <Text style={styles.sectionSubtitle}>
                     Need more space? Choose a plan that fits your needs
                 </Text>
-                
+
                 {storagePlans.map((plan) => {
                     const isCurrentPlan = plan.tier === storage.tier;
-                    
+
                     return (
                         <View
                             key={plan.id}
@@ -375,16 +375,16 @@ export default function CloudStorageScreen({ navigation }: Props) {
                                     </View>
                                 )}
                             </View>
-                            
+
                             <View style={styles.planPricing}>
                                 <Text style={styles.planPrice}>₹{plan.price}</Text>
                                 <Text style={styles.planPeriod}>/{plan.billingPeriod}</Text>
                             </View>
-                            
+
                             <Text style={styles.planStorage}>
                                 💾 {plan.storage === -1 ? 'Unlimited' : `${plan.storage}GB`} storage
                             </Text>
-                            
+
                             <View style={styles.planFeatures}>
                                 {plan.features.map((feature, index) => (
                                     <Text key={index} style={styles.planFeature}>
@@ -392,7 +392,7 @@ export default function CloudStorageScreen({ navigation }: Props) {
                                     </Text>
                                 ))}
                             </View>
-                            
+
                             {!isCurrentPlan && (
                                 <TouchableOpacity style={styles.planButton}>
                                     <Text style={styles.planButtonText}>Upgrade</Text>

@@ -153,7 +153,7 @@ export default function NotificationSettingsScreen({ navigation }: Props) {
             {/* Sound & Vibration */}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Alerts</Text>
-                
+
                 <View style={styles.settingRow}>
                     <View style={styles.settingLeft}>
                         <Text style={styles.channelIcon}>🔊</Text>
@@ -259,7 +259,7 @@ export default function NotificationSettingsScreen({ navigation }: Props) {
                                                     const newChannels = isEnabled
                                                         ? catSettings.channels.filter(c => c !== channel)
                                                         : [...catSettings.channels, channel];
-                                                    
+
                                                     updateCategoryChannel(category, newChannels);
                                                 }}
                                                 disabled={saving}
@@ -288,7 +288,7 @@ export default function NotificationSettingsScreen({ navigation }: Props) {
             {/* Frequency */}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Frequency</Text>
-                
+
                 <View style={styles.settingRow}>
                     <View style={styles.settingLeft}>
                         <Text style={styles.channelIcon}>📊</Text>

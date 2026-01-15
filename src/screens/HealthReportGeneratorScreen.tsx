@@ -234,7 +234,7 @@ export default function HealthReportGeneratorScreen({ navigation }: Props) {
                                         style={[
                                             styles.sectionCheckbox,
                                             selectedSections.includes(section.id) &&
-                                                styles.sectionCheckboxChecked,
+                                            styles.sectionCheckboxChecked,
                                         ]}
                                     >
                                         {selectedSections.includes(section.id) && (
@@ -323,7 +323,7 @@ export default function HealthReportGeneratorScreen({ navigation }: Props) {
                             <Text style={styles.previewTitle}>Report Preview</Text>
                             <Text style={styles.previewText}>
                                 • Sections: {selectedSections.length}{'\n'}
-                                • Data Points: {selectedSections.reduce((sum, id) => 
+                                • Data Points: {selectedSections.reduce((sum, id) =>
                                     sum + (selectedTemplate.sections.find(s => s.id === id)?.dataPoints.length || 0), 0
                                 )}{'\n'}
                                 • Format: {reportFormat.toUpperCase()}{'\n'}

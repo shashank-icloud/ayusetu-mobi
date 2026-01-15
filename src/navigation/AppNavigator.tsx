@@ -32,6 +32,12 @@ import ConsentInboxScreen from '../screens/patient/ConsentInboxScreen';
 import ConsentTemplatesScreen from '../screens/patient/ConsentTemplatesScreen';
 import ConsentAuditScreen from '../screens/patient/ConsentAuditScreen';
 import EmergencyAccessScreen from '../screens/patient/EmergencyAccessScreen';
+import { HealthSummaryScreen } from '../screens/HealthSummaryScreen';
+import { TrendAnalysisScreen } from '../screens/TrendAnalysisScreen';
+import { DiseaseTrackersScreen } from '../screens/DiseaseTrackersScreen';
+import { MedicationAdherenceScreen } from '../screens/MedicationAdherenceScreen';
+import { LifestyleTrackingScreen } from '../screens/LifestyleTrackingScreen';
+import { SymptomJournalScreen } from '../screens/SymptomJournalScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -71,6 +77,13 @@ export type RootStackParamList = {
     // Category 3: Record Ingestion & Management
     AutoSync: undefined;
     ManualUpload: undefined;
+    // Category 5: Health Insights & Intelligence
+    HealthSummary: undefined;
+    TrendAnalysis: undefined;
+    DiseaseTrackers: undefined;
+    MedicationAdherence: undefined;
+    LifestyleTracking: undefined;
+    SymptomJournal: undefined;
     RecordManagement: undefined;
     // Category 4: Advanced Consent & Data Sharing
     ConsentInbox: undefined;
@@ -109,6 +122,12 @@ export default function AppNavigator() {
             <Stack.Screen name="FamilyManagement" component={FamilyManagementScreen} />
             <Stack.Screen name="ChildAccountManagement" component={ChildAccountManagementScreen} />
             <Stack.Screen name="ElderlyCareDelegation" component={ElderlyCareDelegationScreen} />
+            <Stack.Screen name="HealthSummary" component={HealthSummaryScreen} />
+            <Stack.Screen name="TrendAnalysis" component={TrendAnalysisScreen} />
+            <Stack.Screen name="DiseaseTrackers" component={DiseaseTrackersScreen} />
+            <Stack.Screen name="MedicationAdherence" component={MedicationAdherenceScreen} />
+            <Stack.Screen name="LifestyleTracking" component={LifestyleTrackingScreen} />
+            <Stack.Screen name="SymptomJournal" component={SymptomJournalScreen} />
             <Stack.Screen name="AutoSync" component={AutoSyncScreen} />
             <Stack.Screen name="ManualUpload" component={ManualUploadScreen} />
             <Stack.Screen name="RecordManagement" component={RecordManagementScreen} />

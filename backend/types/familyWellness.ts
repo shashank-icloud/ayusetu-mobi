@@ -22,26 +22,26 @@ export interface FamilyMember {
     ageGroup: AgeGroup;
     gender: 'male' | 'female' | 'other';
     bloodGroup?: string;
-    
+
     // Health profile
     abhaNumber?: string;
     profilePhoto?: string;
-    
+
     // Medical info
     chronicConditions: string[];
     allergies: string[];
     currentMedications: string[];
-    
+
     // Stats
     height?: number; // in cm
     weight?: number; // in kg
     bmi?: number;
-    
+
     // Tracking
     lastCheckupDate?: Date;
     nextCheckupDue?: Date;
     vaccinationsUpToDate: boolean;
-    
+
     // Access control
     isPrimary: boolean;
     hasFullAccess: boolean;
@@ -55,24 +55,24 @@ export interface VaccinationRecord {
     vaccineType: string; // BCG, Polio, COVID-19, Flu, etc.
     doseNumber: number;
     totalDoses: number;
-    
+
     status: VaccinationStatus;
     scheduledDate: Date;
     administeredDate?: Date;
-    
+
     // Location
     hospitalName?: string;
     doctorName?: string;
     batchNumber?: string;
-    
+
     // Scheduling
     nextDueDate?: Date;
     ageGroup: AgeGroup;
     isOptional: boolean;
-    
+
     // Documents
     certificateUrl?: string;
-    
+
     // Reminders
     reminderSent: boolean;
     reminderDays: number; // Days before due date
@@ -94,25 +94,25 @@ export interface WellnessLog {
     id: string;
     familyMemberId: string;
     date: Date;
-    
+
     // Sleep tracking
     sleepHours?: number;
     sleepQuality?: SleepQuality;
     sleepStartTime?: Date;
     sleepEndTime?: Date;
-    
+
     // Activity tracking
     steps?: number;
     activeMinutes?: number;
     caloriesBurned?: number;
     exerciseType?: string[];
     activityLevel?: ActivityLevel;
-    
+
     // Nutrition
     waterIntake?: number; // in ml
     mealsLogged?: number;
     caloriesConsumed?: number;
-    
+
     // Vitals
     weight?: number;
     bloodPressureSystolic?: number;
@@ -121,12 +121,12 @@ export interface WellnessLog {
     bloodSugar?: number;
     temperature?: number;
     oxygenLevel?: number;
-    
+
     // Mental wellness
     moodRating?: number; // 1-10
     stressLevel?: number; // 1-10
     anxietyLevel?: number; // 1-10
-    
+
     // Notes
     notes?: string;
     symptoms?: string[];
@@ -136,26 +136,26 @@ export interface PreventiveCareItem {
     id: string;
     familyMemberId: string;
     careType: 'screening' | 'checkup' | 'test' | 'vaccination' | 'consultation';
-    
+
     // Details
     name: string;
     description: string;
     ageGroup: AgeGroup;
     gender?: 'male' | 'female' | 'other';
-    
+
     // Frequency
     frequency: 'once' | 'yearly' | 'monthly' | 'quarterly' | 'as-needed';
     recommendedAge?: string; // "40+", "After 50", etc.
-    
+
     // Scheduling
     status: 'due' | 'overdue' | 'completed' | 'upcoming' | 'not-applicable';
     lastCompletedDate?: Date;
     nextDueDate?: Date;
-    
+
     // Priority
     priority: 'low' | 'medium' | 'high' | 'urgent';
     riskLevel?: RiskLevel;
-    
+
     // Reminders
     reminderEnabled: boolean;
     reminderDaysBefore: number;
@@ -165,21 +165,21 @@ export interface HealthRiskAssessment {
     id: string;
     familyMemberId: string;
     assessmentDate: Date;
-    
+
     // Risk categories
     cardiovascularRisk: RiskLevel;
     diabetesRisk: RiskLevel;
     hypertensionRisk: RiskLevel;
     cancerRisk: RiskLevel;
     overallHealthRisk: RiskLevel;
-    
+
     // Factors
     riskFactors: RiskFactor[];
     protectiveFactors: string[];
-    
+
     // Recommendations
     recommendations: HealthRecommendation[];
-    
+
     // Score
     healthScore: number; // 0-100
     previousScore?: number;
@@ -207,22 +207,22 @@ export interface WellnessGoal {
     id: string;
     familyMemberId: string;
     goalType: 'weight-loss' | 'fitness' | 'sleep' | 'nutrition' | 'stress-management' | 'custom';
-    
+
     // Goal details
     title: string;
     description: string;
     targetValue: number;
     currentValue: number;
     unit: string; // kg, steps, hours, etc.
-    
+
     // Timeline
     startDate: Date;
     targetDate: Date;
-    
+
     // Progress
     status: 'not-started' | 'in-progress' | 'achieved' | 'abandoned';
     progressPercentage: number;
-    
+
     // Tracking
     milestones: GoalMilestone[];
     lastUpdated: Date;

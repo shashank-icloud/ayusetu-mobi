@@ -1,6 +1,7 @@
 // Family & Wellness Service - Category 12
 // Mock implementation for family health, vaccination, wellness tracking
 
+import { Config } from '../../src/config/env';
 import {
     FamilyMember,
     VaccinationRecord,
@@ -393,16 +394,16 @@ class FamilyWellnessService {
     // Family Members
     async getFamilyMembers(request: GetFamilyMembersRequest = {}): Promise<FamilyMember[]> {
         // In DEV mode, return mock data
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             return mockFamilyMembers;
         }
-        
+
         // Production: API call
         throw new Error('Production API not implemented');
     }
 
     async addFamilyMember(request: AddFamilyMemberRequest): Promise<FamilyMember> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const age = new Date().getFullYear() - request.dateOfBirth.getFullYear();
             let ageGroup: AgeGroup = 'adult';
             if (age < 2) ageGroup = 'infant';
@@ -435,15 +436,15 @@ class FamilyWellnessService {
     }
 
     async updateFamilyMember(request: UpdateFamilyMemberRequest): Promise<FamilyMember> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const member = mockFamilyMembers.find(m => m.id === request.memberId);
             if (!member) throw new Error('Member not found');
-            
+
             if (request.weight && request.height) {
                 const heightM = (request.height || member.height || 170) / 100;
                 member.bmi = (request.weight || member.weight || 70) / (heightM * heightM);
             }
-            
+
             return { ...member, ...request };
         }
         throw new Error('Production API not implemented');
@@ -451,9 +452,9 @@ class FamilyWellnessService {
 
     // Vaccinations
     async getVaccinations(request: GetVaccinationsRequest = {}): Promise<VaccinationRecord[]> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             let filtered = mockVaccinations;
-            
+
             if (request.familyMemberId) {
                 filtered = filtered.filter(v => v.familyMemberId === request.familyMemberId);
             }
@@ -463,14 +464,14 @@ class FamilyWellnessService {
             if (request.ageGroup) {
                 filtered = filtered.filter(v => v.ageGroup === request.ageGroup);
             }
-            
+
             return filtered;
         }
         throw new Error('Production API not implemented');
     }
 
     async getVaccineSchedule(ageGroup?: AgeGroup): Promise<VaccineSchedule[]> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             if (ageGroup) {
                 return mockVaccineSchedule.filter(s => s.ageGroup === ageGroup);
             }
@@ -480,7 +481,7 @@ class FamilyWellnessService {
     }
 
     async recordVaccination(request: RecordVaccinationRequest): Promise<VaccinationRecord> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const record: VaccinationRecord = {
                 id: `vac-${Date.now()}`,
                 familyMemberId: request.familyMemberId,
@@ -505,25 +506,25 @@ class FamilyWellnessService {
 
     // Wellness Logs
     async getWellnessLogs(request: GetWellnessLogsRequest): Promise<WellnessLog[]> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             let filtered = mockWellnessLogs.filter(
                 log => log.familyMemberId === request.familyMemberId
             );
-            
+
             if (request.startDate) {
                 filtered = filtered.filter(log => log.date >= request.startDate!);
             }
             if (request.endDate) {
                 filtered = filtered.filter(log => log.date <= request.endDate!);
             }
-            
+
             return filtered.sort((a, b) => b.date.getTime() - a.date.getTime());
         }
         throw new Error('Production API not implemented');
     }
 
     async logWellness(request: LogWellnessRequest): Promise<WellnessLog> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const log: WellnessLog = {
                 id: `wl-${Date.now()}`,
                 familyMemberId: request.familyMemberId,
@@ -541,9 +542,9 @@ class FamilyWellnessService {
 
     // Preventive Care
     async getPreventiveCare(request: GetPreventiveCareRequest = {}): Promise<PreventiveCareItem[]> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             let filtered = mockPreventiveCare;
-            
+
             if (request.familyMemberId) {
                 filtered = filtered.filter(item => item.familyMemberId === request.familyMemberId);
             }
@@ -553,25 +554,25 @@ class FamilyWellnessService {
             if (request.priority) {
                 filtered = filtered.filter(item => item.priority === request.priority);
             }
-            
+
             return filtered;
         }
         throw new Error('Production API not implemented');
     }
 
     async completePreventiveCare(request: CompletePreventiveCareRequest): Promise<PreventiveCareItem> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const item = mockPreventiveCare.find(i => i.id === request.itemId);
             if (!item) throw new Error('Item not found');
-            
+
             item.status = 'completed';
             item.lastCompletedDate = request.completedDate;
-            
+
             // Calculate next due date based on frequency
             const nextYear = new Date(request.completedDate);
             nextYear.setFullYear(nextYear.getFullYear() + 1);
             item.nextDueDate = nextYear;
-            
+
             return item;
         }
         throw new Error('Production API not implemented');
@@ -579,7 +580,7 @@ class FamilyWellnessService {
 
     // Health Risk Assessment
     async getHealthRiskAssessment(request: GetHealthRiskAssessmentRequest): Promise<HealthRiskAssessment> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             return mockHealthRiskAssessment;
         }
         throw new Error('Production API not implemented');
@@ -588,7 +589,7 @@ class FamilyWellnessService {
     async createHealthRiskAssessment(
         request: CreateHealthRiskAssessmentRequest
     ): Promise<HealthRiskAssessment> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             // Mock: Return sample assessment based on answers
             return mockHealthRiskAssessment;
         }
@@ -597,22 +598,22 @@ class FamilyWellnessService {
 
     // Wellness Goals
     async getWellnessGoals(request: GetWellnessGoalsRequest): Promise<WellnessGoal[]> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             let filtered = mockWellnessGoals.filter(
                 goal => goal.familyMemberId === request.familyMemberId
             );
-            
+
             if (request.status) {
                 filtered = filtered.filter(goal => goal.status === request.status);
             }
-            
+
             return filtered;
         }
         throw new Error('Production API not implemented');
     }
 
     async createWellnessGoal(request: CreateWellnessGoalRequest): Promise<WellnessGoal> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const goal: WellnessGoal = {
                 id: `goal-${Date.now()}`,
                 familyMemberId: request.familyMemberId,
@@ -635,23 +636,23 @@ class FamilyWellnessService {
     }
 
     async updateGoalProgress(request: UpdateGoalProgressRequest): Promise<WellnessGoal> {
-        if (process.env.MODE === 'DEV' || true) {
+        if (Config.DEVELOPER_MODE) {
             const goal = mockWellnessGoals.find(g => g.id === request.goalId);
             if (!goal) throw new Error('Goal not found');
-            
+
             goal.currentValue = request.currentValue;
             goal.progressPercentage = Math.min(
                 100,
                 (request.currentValue / goal.targetValue) * 100
             );
             goal.lastUpdated = new Date();
-            
+
             if (goal.progressPercentage >= 100) {
                 goal.status = 'achieved';
             } else {
                 goal.status = 'in-progress';
             }
-            
+
             return goal;
         }
         throw new Error('Production API not implemented');

@@ -251,8 +251,8 @@ export const SymptomJournalScreen: React.FC<{ navigation: any }> = ({ navigation
                                             <View style={styles.patternStat}>
                                                 <Text style={styles.statLabel}>Trend</Text>
                                                 <Text style={styles.trendText}>
-                                                    {pattern.trend === 'improving' ? '📉 Improving' :
-                                                        pattern.trend === 'worsening' ? '📈 Worsening' :
+                                                    {pattern.trend === 'decreasing' ? '📉 Improving' :
+                                                        pattern.trend === 'increasing' ? '📈 Worsening' :
                                                             '➡️ Stable'}
                                                 </Text>
                                             </View>

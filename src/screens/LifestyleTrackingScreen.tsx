@@ -216,51 +216,51 @@ export const LifestyleTrackingScreen: React.FC<{ navigation: any }> = ({ navigat
                                 <View style={styles.entryHeader}>
                                     <Text style={styles.entryIcon}>{getCategoryIcon(entry.category)}</Text>
                                     <View style={styles.entryInfo}>
-                                        {entry.category === 'exercise' && entry.data.type && (
+                                        {entry.category === 'exercise' && 'type' in entry.data && (
                                             <>
                                                 <Text style={styles.entryTitle}>{entry.data.type}</Text>
                                                 <Text style={styles.entryDetail}>
                                                     {entry.data.duration} min • {entry.data.intensity} intensity
                                                 </Text>
-                                                {entry.data.caloriesBurned && (
+                                                {'caloriesBurned' in entry.data && entry.data.caloriesBurned && (
                                                     <Text style={styles.entryDetail}>🔥 {entry.data.caloriesBurned} calories</Text>
                                                 )}
                                             </>
                                         )}
-                                        {entry.category === 'sleep' && (
+                                        {entry.category === 'sleep' && 'duration' in entry.data && 'quality' in entry.data && (
                                             <>
                                                 <Text style={styles.entryTitle}>Sleep</Text>
                                                 <Text style={styles.entryDetail}>
                                                     {entry.data.duration} hours • {entry.data.quality} quality
                                                 </Text>
-                                                {entry.data.bedTime && (
+                                                {'bedTime' in entry.data && entry.data.bedTime && (
                                                     <Text style={styles.entryDetail}>
                                                         {entry.data.bedTime} - {entry.data.wakeTime}
                                                     </Text>
                                                 )}
                                             </>
                                         )}
-                                        {entry.category === 'diet' && (
+                                        {entry.category === 'diet' && 'mealType' in entry.data && (
                                             <>
-                                                <Text style={styles.entryTitle}>{entry.data.meal || 'Meal'}</Text>
-                                                {entry.data.calories && (
+                                                <Text style={styles.entryTitle}>{entry.data.mealType || 'Meal'}</Text>
+                                                {'calories' in entry.data && entry.data.calories && (
                                                     <Text style={styles.entryDetail}>{entry.data.calories} calories</Text>
                                                 )}
                                             </>
                                         )}
-                                        {entry.category === 'water' && (
+                                        {entry.category === 'water' && 'totalML' in entry.data && (
                                             <>
                                                 <Text style={styles.entryTitle}>Water Intake</Text>
-                                                <Text style={styles.entryDetail}>{entry.data.amount} ml</Text>
+                                                <Text style={styles.entryDetail}>{entry.data.totalML} ml</Text>
                                             </>
                                         )}
-                                        {entry.category === 'stress' && (
+                                        {entry.category === 'stress' && 'level' in entry.data && (
                                             <>
                                                 <Text style={styles.entryTitle}>Stress Level</Text>
                                                 <Text style={styles.entryDetail}>Level: {entry.data.level}/10</Text>
                                             </>
                                         )}
-                                        {entry.category === 'habit' && (
+                                        {entry.category === 'habit' && 'habitName' in entry.data && (
                                             <>
                                                 <Text style={styles.entryTitle}>{entry.data.habitName}</Text>
                                                 <Text style={styles.entryDetail}>
@@ -268,7 +268,6 @@ export const LifestyleTrackingScreen: React.FC<{ navigation: any }> = ({ navigat
                                                 </Text>
                                             </>
                                         )}
-                                        {entry.notes && <Text style={styles.entryNotes}>{entry.notes}</Text>}
                                     </View>
                                 </View>
                             </View>

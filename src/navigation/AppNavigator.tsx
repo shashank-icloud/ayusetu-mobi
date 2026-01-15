@@ -71,6 +71,9 @@ import ExportHistoryScreen from '../screens/ExportHistoryScreen';
 import NotificationSettingsScreen from '../screens/NotificationSettingsScreen';
 import NotificationInboxScreen from '../screens/NotificationInboxScreen';
 import MessagingScreen from '../screens/MessagingScreen';
+import PremiumFeaturesScreen from '../screens/PremiumFeaturesScreen';
+import CloudStorageScreen from '../screens/CloudStorageScreen';
+import PartnerServicesScreen from '../screens/PartnerServicesScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -170,6 +173,10 @@ export type RootStackParamList = {
     NotificationSettings: undefined;
     NotificationInbox: undefined;
     Messaging: { conversationId?: string } | undefined;
+    // Category 15: Monetization-Safe Features
+    PremiumFeatures: undefined;
+    CloudStorage: undefined;
+    PartnerServices: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -248,6 +255,9 @@ export default function AppNavigator() {
             <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: 'Notification Settings' }} />
             <Stack.Screen name="NotificationInbox" component={NotificationInboxScreen} options={{ title: 'Notifications' }} />
             <Stack.Screen name="Messaging" component={MessagingScreen} options={{ title: 'Messages' }} />
+            <Stack.Screen name="PremiumFeatures" component={PremiumFeaturesScreen} options={{ title: 'Premium Features' }} />
+            <Stack.Screen name="CloudStorage" component={CloudStorageScreen} options={{ title: 'Cloud Storage' }} />
+            <Stack.Screen name="PartnerServices" component={PartnerServicesScreen} options={{ title: 'Partner Services' }} />
         </Stack.Navigator>
     );
 }

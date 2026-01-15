@@ -54,7 +54,7 @@ export const DiseaseTrackersScreen: React.FC<{ navigation: any }> = ({ navigatio
         }
 
         try {
-            await insightsService.createDiseaseTracker('custom', newDiseaseName);
+            await insightsService.createDiseaseTracker('other', newDiseaseName);
             setShowAddModal(false);
             setNewDiseaseName('');
             loadTrackers();
@@ -72,7 +72,7 @@ export const DiseaseTrackersScreen: React.FC<{ navigation: any }> = ({ navigatio
 
     const getStatusColor = (status: DiseaseTracker['status']): string => {
         if (status === 'active') return '#0ea5e9';
-        if (status === 'monitoring') return '#f59e0b';
+        if (status === 'managed') return '#10b981';
         return '#94a3b8';
     };
 

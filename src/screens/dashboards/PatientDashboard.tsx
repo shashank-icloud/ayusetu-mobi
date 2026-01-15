@@ -201,6 +201,13 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('CarePlans'),
         },
         {
+            id: 'reminders',
+            title: 'Reminders',
+            icon: '🔔',
+            color: '#a855f7',
+            onPress: () => navigation.navigate('Reminders'),
+        },
+        {
             id: 'emergencyCard',
             title: 'Emergency Card',
             icon: '🆘',

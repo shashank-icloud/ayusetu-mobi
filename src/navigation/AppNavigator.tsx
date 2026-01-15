@@ -65,6 +65,9 @@ import FamilyHealthDashboardScreen from '../screens/FamilyHealthDashboardScreen'
 import VaccinationCalendarScreen from '../screens/VaccinationCalendarScreen';
 import PreventiveCareScreen from '../screens/PreventiveCareScreen';
 import WellnessTrackingScreen from '../screens/WellnessTrackingScreen';
+import DataExportScreen from '../screens/DataExportScreen';
+import HealthReportGeneratorScreen from '../screens/HealthReportGeneratorScreen';
+import ExportHistoryScreen from '../screens/ExportHistoryScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -156,6 +159,10 @@ export type RootStackParamList = {
     VaccinationCalendar: { memberId?: string } | undefined;
     PreventiveCare: { memberId?: string } | undefined;
     WellnessTracking: { memberId?: string } | undefined;
+    // Category 13: Data Export & Portability
+    DataExport: undefined;
+    HealthReportGenerator: undefined;
+    ExportHistory: undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -230,6 +237,9 @@ export default function AppNavigator() {
             <Stack.Screen name="VaccinationCalendar" component={VaccinationCalendarScreen} />
             <Stack.Screen name="PreventiveCare" component={PreventiveCareScreen} />
             <Stack.Screen name="WellnessTracking" component={WellnessTrackingScreen} />
+            <Stack.Screen name="DataExport" component={DataExportScreen} />
+            <Stack.Screen name="HealthReportGenerator" component={HealthReportGeneratorScreen} />
+            <Stack.Screen name="ExportHistory" component={ExportHistoryScreen} />
         </Stack.Navigator>
     );
 }

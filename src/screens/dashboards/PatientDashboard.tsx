@@ -264,6 +264,20 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('OfflineMode'),
         },
         {
+            id: 'familyHealth',
+            title: 'Family Health',
+            icon: '👨‍👩‍👧‍👦',
+            color: '#e91e63',
+            onPress: () => navigation.navigate('FamilyHealthDashboard'),
+        },
+        {
+            id: 'dataExport',
+            title: 'Export Data',
+            icon: '📤',
+            color: '#00bcd4',
+            onPress: () => navigation.navigate('DataExport'),
+        },
+        {
             id: 'profile',
             title: 'My Profile',
             icon: '⚙️',

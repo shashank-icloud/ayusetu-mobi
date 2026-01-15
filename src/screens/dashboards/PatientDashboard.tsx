@@ -215,6 +215,13 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('EmergencyCard'),
         },
         {
+            id: 'security',
+            title: 'Security',
+            icon: '🔒',
+            color: '#7c3aed',
+            onPress: () => navigation.navigate('SecuritySettings'),
+        },
+        {
             id: 'profile',
             title: 'My Profile',
             icon: '⚙️',

@@ -45,6 +45,10 @@ import RemindersScreen from '../screens/RemindersScreen';
 import EmergencyCardScreen from '../screens/EmergencyCardScreen';
 import SOSScreen from '../screens/SOSScreen';
 import EmergencySettingsScreen from '../screens/EmergencySettingsScreen';
+import SecuritySettingsScreen from '../screens/SecuritySettingsScreen';
+import DeviceManagementScreen from '../screens/DeviceManagementScreen';
+import SessionManagementScreen from '../screens/SessionManagementScreen';
+import SecurityEventsScreen from '../screens/SecurityEventsScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -107,6 +111,15 @@ export type RootStackParamList = {
     CreateEmergencyCard: undefined;
     SOS: undefined;
     EmergencySettings: undefined;
+    // Category 8: Security & Privacy Controls
+    SecuritySettings: undefined;
+    DeviceManagement: undefined;
+    SessionManagement: undefined;
+    SecurityEvents: undefined;
+    SetupPIN: undefined;
+    ChangePIN: undefined;
+    DataVisibilitySettings: undefined;
+    SectionLockSettings: undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -152,6 +165,10 @@ export default function AppNavigator() {
             <Stack.Screen name="RecordManagement" component={RecordManagementScreen} />
             <Stack.Screen name="ConsentInbox" component={ConsentInboxScreen} />
             <Stack.Screen name="ConsentTemplates" component={ConsentTemplatesScreen} />
+            <Stack.Screen name="SecuritySettings" component={SecuritySettingsScreen} />
+            <Stack.Screen name="DeviceManagement" component={DeviceManagementScreen} />
+            <Stack.Screen name="SessionManagement" component={SessionManagementScreen} />
+            <Stack.Screen name="SecurityEvents" component={SecurityEventsScreen} />
             <Stack.Screen name="ConsentAudit" component={ConsentAuditScreen} />
             <Stack.Screen name="EmergencyAccess" component={EmergencyAccessScreen} />
             <Stack.Screen name="Appointments" component={AppointmentsScreen} />

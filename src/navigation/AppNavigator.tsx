@@ -54,6 +54,9 @@ import DataAccessLogsScreen from '../screens/DataAccessLogsScreen';
 import ConsentHistoryScreen from '../screens/ConsentHistoryScreen';
 import ABDMLogsScreen from '../screens/ABDMLogsScreen';
 import GenerateAuditReportScreen from '../screens/GenerateAuditReportScreen';
+import LanguageSettingsScreen from '../screens/LanguageSettingsScreen';
+import AccessibilitySettingsScreen from '../screens/AccessibilitySettingsScreen';
+import OfflineModeScreen from '../screens/OfflineModeScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -131,6 +134,10 @@ export type RootStackParamList = {
     ConsentHistory: undefined;
     ABDMLogs: undefined;
     GenerateAuditReport: undefined;
+    // Category 10: India-First & Accessibility
+    LanguageSettings: undefined;
+    AccessibilitySettings: undefined;
+    OfflineMode: undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -194,6 +201,9 @@ export default function AppNavigator() {
             <Stack.Screen name="ConsentHistory" component={ConsentHistoryScreen} />
             <Stack.Screen name="ABDMLogs" component={ABDMLogsScreen} />
             <Stack.Screen name="GenerateAuditReport" component={GenerateAuditReportScreen} />
+            <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
+            <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
+            <Stack.Screen name="OfflineMode" component={OfflineModeScreen} />
         </Stack.Navigator>
     );
 }

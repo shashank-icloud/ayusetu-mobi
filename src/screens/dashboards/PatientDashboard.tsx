@@ -229,6 +229,27 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('ComplianceDashboard'),
         },
         {
+            id: 'language',
+            title: 'Language',
+            icon: '🌍',
+            color: '#06b6d4',
+            onPress: () => navigation.navigate('LanguageSettings'),
+        },
+        {
+            id: 'accessibility',
+            title: 'Accessibility',
+            icon: '♿',
+            color: '#8b5cf6',
+            onPress: () => navigation.navigate('AccessibilitySettings'),
+        },
+        {
+            id: 'offline',
+            title: 'Offline Mode',
+            icon: '📡',
+            color: '#10b981',
+            onPress: () => navigation.navigate('OfflineMode'),
+        },
+        {
             id: 'profile',
             title: 'My Profile',
             icon: '⚙️',

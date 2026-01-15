@@ -44,7 +44,7 @@ export default function PatientDashboard({ navigation }: Props) {
             title: 'Book Appointment',
             icon: '📅',
             color: '#2196F3',
-            onPress: () => console.log('Book Doctor/Lab Appointment'),
+            onPress: () => navigation.navigate('BookAppointment'),
         },
         {
             id: 'records',
@@ -185,6 +185,20 @@ export default function PatientDashboard({ navigation }: Props) {
             icon: '📝',
             color: '#ec4899',
             onPress: () => navigation.navigate('SymptomJournal'),
+        },
+        {
+            id: 'myAppointments',
+            title: 'My Appointments',
+            icon: '🗓️',
+            color: '#3b82f6',
+            onPress: () => navigation.navigate('Appointments'),
+        },
+        {
+            id: 'carePlans',
+            title: 'Care Plans',
+            icon: '📋',
+            color: '#14b8a6',
+            onPress: () => navigation.navigate('CarePlans'),
         },
         {
             id: 'profile',

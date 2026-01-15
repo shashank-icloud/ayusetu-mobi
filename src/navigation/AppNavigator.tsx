@@ -38,6 +38,9 @@ import { DiseaseTrackersScreen } from '../screens/DiseaseTrackersScreen';
 import { MedicationAdherenceScreen } from '../screens/MedicationAdherenceScreen';
 import { LifestyleTrackingScreen } from '../screens/LifestyleTrackingScreen';
 import { SymptomJournalScreen } from '../screens/SymptomJournalScreen';
+import AppointmentsScreen from '../screens/AppointmentsScreen';
+import BookAppointmentScreen from '../screens/BookAppointmentScreen';
+import CarePlansScreen from '../screens/CarePlansScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -90,7 +93,13 @@ export type RootStackParamList = {
     ConsentTemplates: undefined;
     ConsentAudit: undefined;
     EmergencyAccess: undefined;
+    // Category 6: Appointments & Care Journey
+    Appointments: undefined;
+    BookAppointment: { type?: 'doctor' | 'lab' | 'hospital' } | undefined;
+    CarePlans: undefined;
 };
+
+export type AppStackParamList = RootStackParamList;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -135,6 +144,9 @@ export default function AppNavigator() {
             <Stack.Screen name="ConsentTemplates" component={ConsentTemplatesScreen} />
             <Stack.Screen name="ConsentAudit" component={ConsentAuditScreen} />
             <Stack.Screen name="EmergencyAccess" component={EmergencyAccessScreen} />
+            <Stack.Screen name="Appointments" component={AppointmentsScreen} />
+            <Stack.Screen name="BookAppointment" component={BookAppointmentScreen} />
+            <Stack.Screen name="CarePlans" component={CarePlansScreen} />
         </Stack.Navigator>
     );
 }

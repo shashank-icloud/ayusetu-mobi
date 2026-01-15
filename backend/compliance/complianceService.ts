@@ -1,7 +1,7 @@
 // Compliance & Audit Transparency Service - Category 9
 // Full transparency into data access, consent usage, and ABDM transactions
 
-import Config from '../../src/config/env';
+import { Config } from '../../src/config/env';
 import {
   DataAccessLog,
   ConsentAuditLog,
@@ -21,7 +21,7 @@ import {
 } from '../types/compliance';
 
 class ComplianceService {
-  private baseUrl = `${Config.API_URL}/compliance`;
+  private baseUrl = `${Config.getBaseUrl()}/compliance`;
 
   // ============================================
   // Data Access Logs
@@ -517,7 +517,7 @@ class ComplianceService {
 
   async generateAuditReport(request: AuditReportRequest): Promise<AuditReport> {
     if (Config.DEVELOPER_MODE) {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise<void>(resolve => setTimeout(resolve, 1500));
       return {
         id: `report-${Date.now()}`,
         userId: request.userId,
@@ -546,16 +546,15 @@ class ComplianceService {
     return response.json();
   }
 
-  async downloadAuditReport(reportId: string): Promise<Blob> {
+  async downloadAuditReport(reportId: string): Promise<string> {
     if (Config.DEVELOPER_MODE) {
-      // Return mock PDF blob
-      const mockPDF = new Blob(['Mock PDF content'], { type: 'application/pdf' });
-      return mockPDF;
+      // Return mock PDF content (would use actual PDF library in production)
+      return `Mock PDF content for report ${reportId}`;
     }
 
     const response = await fetch(`${this.baseUrl}/download-report/${reportId}`);
     if (!response.ok) throw new Error('Failed to download audit report');
-    return response.blob();
+    return response.text();
   }
 }
 

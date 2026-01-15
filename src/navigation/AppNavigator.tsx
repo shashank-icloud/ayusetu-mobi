@@ -68,6 +68,9 @@ import WellnessTrackingScreen from '../screens/WellnessTrackingScreen';
 import DataExportScreen from '../screens/DataExportScreen';
 import HealthReportGeneratorScreen from '../screens/HealthReportGeneratorScreen';
 import ExportHistoryScreen from '../screens/ExportHistoryScreen';
+import NotificationSettingsScreen from '../screens/NotificationSettingsScreen';
+import NotificationInboxScreen from '../screens/NotificationInboxScreen';
+import MessagingScreen from '../screens/MessagingScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -163,9 +166,11 @@ export type RootStackParamList = {
     DataExport: undefined;
     HealthReportGenerator: undefined;
     ExportHistory: undefined;
+    // Category 14: Notifications & Communication
+    NotificationSettings: undefined;
+    NotificationInbox: undefined;
+    Messaging: { conversationId?: string } | undefined;
 };
-
-export type AppStackParamList = RootStackParamList;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -240,6 +245,9 @@ export default function AppNavigator() {
             <Stack.Screen name="DataExport" component={DataExportScreen} />
             <Stack.Screen name="HealthReportGenerator" component={HealthReportGeneratorScreen} />
             <Stack.Screen name="ExportHistory" component={ExportHistoryScreen} />
+            <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: 'Notification Settings' }} />
+            <Stack.Screen name="NotificationInbox" component={NotificationInboxScreen} options={{ title: 'Notifications' }} />
+            <Stack.Screen name="Messaging" component={MessagingScreen} options={{ title: 'Messages' }} />
         </Stack.Navigator>
     );
 }

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Alert } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';
+import { abdmService } from '../services/abdmService';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AadhaarInput'>;
 
 export default function AadhaarInputScreen({ navigation }: Props) {
     const [aadhaar, setAadhaar] = useState('');
     const [consent, setConsent] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const formatAadhaar = (text: string) => {
         const cleaned = text.replace(/\D/g, '');
@@ -24,6 +26,24 @@ export default function AadhaarInputScreen({ navigation }: Props) {
     };
 
     const canProceed = aadhaar.length === 12 && consent;
+
+    const handleSendOTP = async () => {
+        if (!canProceed) return;
+
+        setLoading(true);
+        try {
+            const result = await abdmService.generateAadhaarOTP(aadhaar);
+            navigation.navigate('OTPVerification', {
+                method: 'aadhaar',
+                value: aadhaar,
+                txnId: result.txnId,
+            });
+        } catch (error: any) {
+            Alert.alert('Error', error.message || 'Failed to send OTP');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -63,11 +83,11 @@ export default function AadhaarInputScreen({ navigation }: Props) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.proceedButton, !canProceed && styles.proceedButtonDisabled]}
-                    onPress={() => canProceed && navigation.navigate('OTPVerification', { method: 'aadhaar', value: aadhaar })}
-                    disabled={!canProceed}
+                    style={[styles.proceedButton, (!canProceed || loading) && styles.proceedButtonDisabled]}
+                    onPress={handleSendOTP}
+                    disabled={!canProceed || loading}
                 >
-                    <Text style={styles.proceedButtonText}>Send OTP</Text>
+                    <Text style={styles.proceedButtonText}>{loading ? 'Sending...' : 'Send OTP'}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

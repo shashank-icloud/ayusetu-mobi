@@ -25,6 +25,9 @@ import FamilyManagementScreen from '../screens/patient/FamilyManagementScreen';
 import EmailInputScreen from '../screens/EmailInputScreen';
 import ChildAccountManagementScreen from '../screens/patient/ChildAccountManagementScreen';
 import ElderlyCareDelegationScreen from '../screens/patient/ElderlyCareDelegationScreen';
+import AutoSyncScreen from '../screens/patient/AutoSyncScreen';
+import ManualUploadScreen from '../screens/patient/ManualUploadScreen';
+import RecordManagementScreen from '../screens/patient/RecordManagementScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -38,6 +41,7 @@ export type RootStackParamList = {
     OTPVerification: {
         method: 'aadhaar' | 'mobile';
         value: string;
+        txnId?: string;
     };
     ABHASuccess: {
         abhaNumber: string;
@@ -60,6 +64,10 @@ export type RootStackParamList = {
     FamilyManagement: undefined;
     ChildAccountManagement: undefined;
     ElderlyCareDelegation: undefined;
+    // Category 3: Record Ingestion & Management
+    AutoSync: undefined;
+    ManualUpload: undefined;
+    RecordManagement: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -92,6 +100,9 @@ export default function AppNavigator() {
             <Stack.Screen name="FamilyManagement" component={FamilyManagementScreen} />
             <Stack.Screen name="ChildAccountManagement" component={ChildAccountManagementScreen} />
             <Stack.Screen name="ElderlyCareDelegation" component={ElderlyCareDelegationScreen} />
+            <Stack.Screen name="AutoSync" component={AutoSyncScreen} />
+            <Stack.Screen name="ManualUpload" component={ManualUploadScreen} />
+            <Stack.Screen name="RecordManagement" component={RecordManagementScreen} />
         </Stack.Navigator>
     );
 }

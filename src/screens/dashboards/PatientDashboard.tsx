@@ -35,7 +35,7 @@ export default function PatientDashboard({ navigation }: Props) {
         {
             id: 'emergency',
             title: 'Emergency',
-            icon: '�',
+            icon: '🚨',
             color: '#F44336',
             onPress: () => console.log('Emergency - Request Ambulance'),
         },
@@ -61,6 +61,27 @@ export default function PatientDashboard({ navigation }: Props) {
             onPress: () => navigation.navigate('ConsentManagement'),
         },
         {
+            id: 'autoSync',
+            title: 'Auto-Sync',
+            icon: '🔄',
+            color: '#3F51B5',
+            onPress: () => navigation.navigate('AutoSync'),
+        },
+        {
+            id: 'upload',
+            title: 'Upload Records',
+            icon: '📤',
+            color: '#00BCD4',
+            onPress: () => navigation.navigate('ManualUpload'),
+        },
+        {
+            id: 'organize',
+            title: 'Organize Records',
+            icon: '📁',
+            color: '#009688',
+            onPress: () => navigation.navigate('RecordManagement'),
+        },
+        {
             id: 'medicines',
             title: 'Medicines',
             icon: '💊',
@@ -71,7 +92,7 @@ export default function PatientDashboard({ navigation }: Props) {
             id: 'timeline',
             title: 'Health Timeline',
             icon: '📊',
-            color: '#00BCD4',
+            color: '#673AB7',
             onPress: () => navigation.navigate('HealthRecords', { initialView: 'timeline' }),
         },
         {
@@ -85,7 +106,7 @@ export default function PatientDashboard({ navigation }: Props) {
             id: 'labs',
             title: 'Lab Tests',
             icon: '🧪',
-            color: '#009688',
+            color: '#4CAF50',
             onPress: () => console.log('View Lab Results'),
         },
         {

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Alert } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';
+import { abdmService } from '../services/abdmService';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'OTPVerification'>;
 
 export default function OTPVerificationScreen({ navigation, route }: Props) {
-    const { method, value } = route.params;
+    const { method, value, txnId } = route.params;
     const [otp, setOtp] = useState('');
     const [timer, setTimer] = useState(60);
     const [canResend, setCanResend] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (timer > 0) {
@@ -30,11 +32,56 @@ export default function OTPVerificationScreen({ navigation, route }: Props) {
         }
     };
 
-    const handleResend = () => {
+    const handleResend = async () => {
         setTimer(60);
         setCanResend(false);
         setOtp('');
-        // Here you would call the API to resend OTP
+
+        try {
+            if (method === 'aadhaar') {
+                await abdmService.generateAadhaarOTP(value);
+            } else {
+                await abdmService.generateMobileOTP(value);
+            }
+        } catch (error: any) {
+            Alert.alert('Error', error.message || 'Failed to resend OTP');
+        }
+    };
+
+    const handleVerify = async () => {
+        if (otp.length !== 6) return;
+
+        setLoading(true);
+        try {
+            let verifiedData;
+            if (method === 'aadhaar') {
+                verifiedData = await abdmService.verifyAadhaarOTP(otp, txnId || '');
+                const abhaData = await abdmService.createABHAWithAadhaar(verifiedData.txnId);
+                navigation.navigate('ABHASuccess', {
+                    abhaNumber: abhaData.healthIdNumber,
+                    abhaAddress: abhaData.healthId,
+                });
+            } else {
+                verifiedData = await abdmService.verifyMobileOTP(otp, txnId || '');
+                // For mobile, create ABHA with minimal data (can add profile screen later)
+                const abhaData = await abdmService.createABHAWithMobile(
+                    verifiedData.txnId,
+                    'User',
+                    'Name',
+                    'M',
+                    '1990',
+                    value
+                );
+                navigation.navigate('ABHASuccess', {
+                    abhaNumber: abhaData.healthIdNumber,
+                    abhaAddress: abhaData.healthId,
+                });
+            }
+        } catch (error: any) {
+            Alert.alert('Error', error.message || 'Invalid OTP');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const canProceed = otp.length === 6;
@@ -91,14 +138,11 @@ export default function OTPVerificationScreen({ navigation, route }: Props) {
                 </View>
 
                 <TouchableOpacity
-                    style={[styles.proceedButton, !canProceed && styles.proceedButtonDisabled]}
-                    onPress={() => canProceed && navigation.navigate('ABHASuccess', {
-                        abhaNumber: '12-3456-7890-1234',
-                        abhaAddress: 'user@abdm'
-                    })}
-                    disabled={!canProceed}
+                    style={[styles.proceedButton, (!canProceed || loading) && styles.proceedButtonDisabled]}
+                    onPress={handleVerify}
+                    disabled={!canProceed || loading}
                 >
-                    <Text style={styles.proceedButtonText}>Verify & Continue</Text>
+                    <Text style={styles.proceedButtonText}>{loading ? 'Verifying...' : 'Verify & Continue'}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Alert } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';
+import { abdmService } from '../services/abdmService';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MobileInput'>;
 
 export default function MobileInputScreen({ navigation }: Props) {
     const [mobile, setMobile] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleMobileChange = (text: string) => {
         const cleaned = text.replace(/\D/g, '');
@@ -17,6 +19,24 @@ export default function MobileInputScreen({ navigation }: Props) {
     };
 
     const canProceed = mobile.length === 10;
+
+    const handleSendOTP = async () => {
+        if (!canProceed) return;
+
+        setLoading(true);
+        try {
+            const result = await abdmService.generateMobileOTP(mobile);
+            navigation.navigate('OTPVerification', {
+                method: 'mobile',
+                value: mobile,
+                txnId: result.txnId,
+            });
+        } catch (error: any) {
+            Alert.alert('Error', error.message || 'Failed to send OTP');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -48,11 +68,11 @@ export default function MobileInputScreen({ navigation }: Props) {
                 </Text>
 
                 <TouchableOpacity
-                    style={[styles.proceedButton, !canProceed && styles.proceedButtonDisabled]}
-                    onPress={() => canProceed && navigation.navigate('OTPVerification', { method: 'mobile', value: mobile })}
-                    disabled={!canProceed}
+                    style={[styles.proceedButton, (!canProceed || loading) && styles.proceedButtonDisabled]}
+                    onPress={handleSendOTP}
+                    disabled={!canProceed || loading}
                 >
-                    <Text style={styles.proceedButtonText}>Send OTP</Text>
+                    <Text style={styles.proceedButtonText}>{loading ? 'Sending...' : 'Send OTP'}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

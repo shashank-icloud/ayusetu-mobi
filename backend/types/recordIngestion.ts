@@ -1,4 +1,4 @@
-export type RecordSource = 
+export type RecordSource =
   | 'abdm_hospital'
   | 'abdm_lab'
   | 'abdm_pharmacy'
@@ -16,18 +16,18 @@ export interface UploadedRecord {
   fileSize: number;
   uploadedAt: string;
   source: RecordSource;
-  
+
   // Processing status
   processingStatus: 'pending' | 'processing' | 'completed' | 'failed';
   ocrText?: string;
   summary?: string;
   keywords?: string[];
-  
+
   // Manual metadata
   tags?: string[];
   notes?: string;
   folder?: string;
-  
+
   // Linked to health record (if converted)
   healthRecordId?: string;
 }

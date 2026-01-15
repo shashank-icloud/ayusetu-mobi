@@ -81,7 +81,7 @@ export default function ManualUploadScreen({ navigation }: Props) {
     setUploading(true);
     try {
       const tagList = tags.split(',').map(t => t.trim()).filter(Boolean);
-      
+
       if (selectedFiles.length === 1) {
         await recordIngestionService.uploadFile(selectedFiles[0], {
           tags: tagList,

@@ -28,6 +28,10 @@ import ElderlyCareDelegationScreen from '../screens/patient/ElderlyCareDelegatio
 import AutoSyncScreen from '../screens/patient/AutoSyncScreen';
 import ManualUploadScreen from '../screens/patient/ManualUploadScreen';
 import RecordManagementScreen from '../screens/patient/RecordManagementScreen';
+import ConsentInboxScreen from '../screens/patient/ConsentInboxScreen';
+import ConsentTemplatesScreen from '../screens/patient/ConsentTemplatesScreen';
+import ConsentAuditScreen from '../screens/patient/ConsentAuditScreen';
+import EmergencyAccessScreen from '../screens/patient/EmergencyAccessScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -68,6 +72,11 @@ export type RootStackParamList = {
     AutoSync: undefined;
     ManualUpload: undefined;
     RecordManagement: undefined;
+    // Category 4: Advanced Consent & Data Sharing
+    ConsentInbox: undefined;
+    ConsentTemplates: undefined;
+    ConsentAudit: undefined;
+    EmergencyAccess: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -103,6 +112,10 @@ export default function AppNavigator() {
             <Stack.Screen name="AutoSync" component={AutoSyncScreen} />
             <Stack.Screen name="ManualUpload" component={ManualUploadScreen} />
             <Stack.Screen name="RecordManagement" component={RecordManagementScreen} />
+            <Stack.Screen name="ConsentInbox" component={ConsentInboxScreen} />
+            <Stack.Screen name="ConsentTemplates" component={ConsentTemplatesScreen} />
+            <Stack.Screen name="ConsentAudit" component={ConsentAuditScreen} />
+            <Stack.Screen name="EmergencyAccess" component={EmergencyAccessScreen} />
         </Stack.Navigator>
     );
 }

@@ -37,7 +37,7 @@ export default function PatientDashboard({ navigation }: Props) {
             title: 'Emergency',
             icon: '🚨',
             color: '#F44336',
-            onPress: () => console.log('Emergency - Request Ambulance'),
+            onPress: () => navigation.navigate('SOS'),
         },
         {
             id: 'appointments',
@@ -199,6 +199,13 @@ export default function PatientDashboard({ navigation }: Props) {
             icon: '📋',
             color: '#14b8a6',
             onPress: () => navigation.navigate('CarePlans'),
+        },
+        {
+            id: 'emergencyCard',
+            title: 'Emergency Card',
+            icon: '🆘',
+            color: '#ef4444',
+            onPress: () => navigation.navigate('EmergencyCard'),
         },
         {
             id: 'profile',

@@ -41,6 +41,9 @@ import { SymptomJournalScreen } from '../screens/SymptomJournalScreen';
 import AppointmentsScreen from '../screens/AppointmentsScreen';
 import BookAppointmentScreen from '../screens/BookAppointmentScreen';
 import CarePlansScreen from '../screens/CarePlansScreen';
+import EmergencyCardScreen from '../screens/EmergencyCardScreen';
+import SOSScreen from '../screens/SOSScreen';
+import EmergencySettingsScreen from '../screens/EmergencySettingsScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -97,6 +100,11 @@ export type RootStackParamList = {
     Appointments: undefined;
     BookAppointment: { type?: 'doctor' | 'lab' | 'hospital' } | undefined;
     CarePlans: undefined;
+    // Category 7: Emergency & Safety Features
+    EmergencyCard: undefined;
+    CreateEmergencyCard: undefined;
+    SOS: undefined;
+    EmergencySettings: undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -147,6 +155,9 @@ export default function AppNavigator() {
             <Stack.Screen name="Appointments" component={AppointmentsScreen} />
             <Stack.Screen name="BookAppointment" component={BookAppointmentScreen} />
             <Stack.Screen name="CarePlans" component={CarePlansScreen} />
+            <Stack.Screen name="EmergencyCard" component={EmergencyCardScreen} />
+            <Stack.Screen name="SOS" component={SOSScreen} />
+            <Stack.Screen name="EmergencySettings" component={EmergencySettingsScreen} />
         </Stack.Navigator>
     );
 }

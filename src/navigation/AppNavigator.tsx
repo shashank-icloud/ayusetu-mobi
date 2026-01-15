@@ -61,6 +61,10 @@ import InsurancePoliciesScreen from '../screens/InsurancePoliciesScreen';
 import ClaimsTrackingScreen from '../screens/ClaimsTrackingScreen';
 import CashlessFlowScreen from '../screens/CashlessFlowScreen';
 import CostEstimationScreen from '../screens/CostEstimationScreen';
+import FamilyHealthDashboardScreen from '../screens/FamilyHealthDashboardScreen';
+import VaccinationCalendarScreen from '../screens/VaccinationCalendarScreen';
+import PreventiveCareScreen from '../screens/PreventiveCareScreen';
+import WellnessTrackingScreen from '../screens/WellnessTrackingScreen';
 
 export type RootStackParamList = {
     Intro: undefined;
@@ -147,6 +151,11 @@ export type RootStackParamList = {
     ClaimsTracking: { policyId?: string } | undefined;
     CashlessFlow: { policyId?: string } | undefined;
     CostEstimation: { policyId?: string } | undefined;
+    // Category 12: Family, Lifestyle & Wellness
+    FamilyHealthDashboard: undefined;
+    VaccinationCalendar: { memberId?: string } | undefined;
+    PreventiveCare: { memberId?: string } | undefined;
+    WellnessTracking: { memberId?: string } | undefined;
 };
 
 export type AppStackParamList = RootStackParamList;
@@ -217,6 +226,10 @@ export default function AppNavigator() {
             <Stack.Screen name="ClaimsTracking" component={ClaimsTrackingScreen} />
             <Stack.Screen name="CashlessFlow" component={CashlessFlowScreen} />
             <Stack.Screen name="CostEstimation" component={CostEstimationScreen} />
+            <Stack.Screen name="FamilyHealthDashboard" component={FamilyHealthDashboardScreen} />
+            <Stack.Screen name="VaccinationCalendar" component={VaccinationCalendarScreen} />
+            <Stack.Screen name="PreventiveCare" component={PreventiveCareScreen} />
+            <Stack.Screen name="WellnessTracking" component={WellnessTrackingScreen} />
         </Stack.Navigator>
     );
 }

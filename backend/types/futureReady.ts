@@ -5,7 +5,7 @@ export type AIInsightType = 'general' | 'trend' | 'recommendation' | 'alert' | '
 
 export type InsightPriority = 'low' | 'medium' | 'high' | 'urgent';
 
-export type WearableDeviceType = 
+export type WearableDeviceType =
     | 'fitness_tracker'
     | 'smartwatch'
     | 'blood_pressure_monitor'
@@ -27,7 +27,7 @@ export type WearableDataType =
 
 export type SyncStatus = 'synced' | 'syncing' | 'failed' | 'pending';
 
-export type PredictionCategory = 
+export type PredictionCategory =
     | 'cardiovascular'
     | 'diabetes'
     | 'respiratory'

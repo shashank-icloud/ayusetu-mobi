@@ -97,7 +97,7 @@ export default function PredictiveInsightsScreen({ navigation }: Props) {
             {healthScore && (
                 <View style={styles.scoreSection}>
                     <Text style={styles.sectionTitle}>Your Health Score</Text>
-                    
+
                     <View style={styles.scoreCard}>
                         <View style={styles.scoreCircle}>
                             <Text style={[styles.scoreValue, { color: getScoreColor(healthScore.overall) }]}>
@@ -105,7 +105,7 @@ export default function PredictiveInsightsScreen({ navigation }: Props) {
                             </Text>
                             <Text style={styles.scoreLabel}>/ 100</Text>
                         </View>
-                        
+
                         <View style={styles.scoreTrend}>
                             <Text style={styles.scoreTrendIcon}>
                                 {healthScore.trend === 'improving' ? '📈' : healthScore.trend === 'declining' ? '📉' : '➡️'}
@@ -198,7 +198,7 @@ export default function PredictiveInsightsScreen({ navigation }: Props) {
             {selectedCategory && riskAssessment && (
                 <View style={styles.riskSection}>
                     <Text style={styles.sectionTitle}>Risk Assessment Details</Text>
-                    
+
                     {loadingRisk ? (
                         <ActivityIndicator size="large" color="#2196f3" />
                     ) : (

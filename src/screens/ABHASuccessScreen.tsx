@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';
@@ -125,7 +126,7 @@ export default function ABHASuccessScreen({ navigation, route }: Props) {
 
                         <TouchableOpacity
                             style={styles.doneButton}
-                            onPress={() => navigation.navigate('PatientDashboard')}
+                            onPress={() => navigation.navigate('MainTabs')}
                         >
                             <Text style={styles.doneButtonText}>Done</Text>
                         </TouchableOpacity>

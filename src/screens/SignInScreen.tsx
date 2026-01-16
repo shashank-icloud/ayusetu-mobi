@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Modal, ScrollView } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, Modal, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';
@@ -50,8 +51,8 @@ export default function SignInScreen({ navigation }: Props) {
     const handleSignIn = () => {
         // Developer mode: Different flows based on identity type
         if (selectedIdentity.id === 'abha') {
-            // ABHA login → Direct to Patient Dashboard (no success screen for sign in)
-            navigation.navigate('PatientDashboard');
+            // ABHA login → Direct to Main Tabs with bottom navigation
+            navigation.navigate('MainTabs');
         } else if (selectedIdentity.id === 'hpr') {
             // HPR login → Direct to Doctor Dashboard
             navigation.navigate('DoctorDashboard');
@@ -169,12 +170,12 @@ export default function SignInScreen({ navigation }: Props) {
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fff', justifyContent: 'flex-start' },
-    header: { alignItems: 'center', paddingTop: 72 },
-    brandMark: { width: 96, height: 96, resizeMode: 'contain', marginBottom: 12 },
-    title: { fontSize: 48, fontWeight: '400', color: '#000', marginBottom: 8 },
-    content: { flex: 1, paddingHorizontal: 24, alignItems: 'center', paddingTop: 120, justifyContent: 'flex-start' },
-    subtitle: { fontSize: 24, fontWeight: '600', color: '#000', marginBottom: 8, textAlign: 'center' },
-    helperText: { fontSize: 14, color: '#666', marginBottom: 32, textAlign: 'center', paddingHorizontal: 12 },
+    header: { alignItems: 'center', paddingTop: 40 },
+    brandMark: { width: 80, height: 80, resizeMode: 'contain', marginBottom: 8 },
+    title: { fontSize: 42, fontWeight: '400', color: '#000', marginBottom: 4 },
+    content: { flex: 1, paddingHorizontal: 24, alignItems: 'center', paddingTop: 40, paddingBottom: 140, justifyContent: 'flex-start' },
+    subtitle: { fontSize: 22, fontWeight: '600', color: '#000', marginBottom: 6, textAlign: 'center' },
+    helperText: { fontSize: 14, color: '#666', marginBottom: 24, textAlign: 'center', paddingHorizontal: 12 },
     dropdownButton: {
         width: '85%',
         height: 72,

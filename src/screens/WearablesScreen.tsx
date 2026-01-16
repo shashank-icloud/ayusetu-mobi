@@ -210,26 +210,26 @@ export default function WearablesScreen({ navigation }: Props) {
             {activitySummary && (
                 <View style={styles.activitySection}>
                     <Text style={styles.sectionTitle}>Today's Activity</Text>
-                    
+
                     <View style={styles.activityGrid}>
                         <View style={styles.activityCard}>
                             <Text style={styles.activityIcon}>👟</Text>
                             <Text style={styles.activityValue}>{activitySummary.steps.toLocaleString()}</Text>
                             <Text style={styles.activityLabel}>Steps</Text>
                         </View>
-                        
+
                         <View style={styles.activityCard}>
                             <Text style={styles.activityIcon}>🔥</Text>
                             <Text style={styles.activityValue}>{activitySummary.caloriesBurned}</Text>
                             <Text style={styles.activityLabel}>Calories</Text>
                         </View>
-                        
+
                         <View style={styles.activityCard}>
                             <Text style={styles.activityIcon}>⏱️</Text>
                             <Text style={styles.activityValue}>{activitySummary.activeMinutes}</Text>
                             <Text style={styles.activityLabel}>Active Min</Text>
                         </View>
-                        
+
                         <View style={styles.activityCard}>
                             <Text style={styles.activityIcon}>📏</Text>
                             <Text style={styles.activityValue}>{activitySummary.distance.toFixed(1)}</Text>
@@ -273,7 +273,7 @@ export default function WearablesScreen({ navigation }: Props) {
             {sleepSummary && (
                 <View style={styles.sleepSection}>
                     <Text style={styles.sectionTitle}>Last Night's Sleep</Text>
-                    
+
                     <View style={styles.sleepCard}>
                         <View style={styles.sleepHeader}>
                             <Text style={styles.sleepQuality}>{sleepSummary.sleepQuality}%</Text>

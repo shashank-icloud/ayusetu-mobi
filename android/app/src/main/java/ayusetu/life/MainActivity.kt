@@ -1,4 +1,4 @@
-package com.ayusetu
+package ayusetu.life
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

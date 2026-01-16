@@ -1,6 +1,13 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Text, Platform } from 'react-native';
 import IntroScreen from '../screens/IntroScreen';
+import HomeScreen from '../screens/dashboards/HomeScreen';
+import ServicesScreen from '../screens/dashboards/ServicesScreen';
+import CareScreen from '../screens/dashboards/CareScreen';
+import InsightsScreen from '../screens/dashboards/InsightsScreen';
+import ProfileTabScreen from '../screens/dashboards/ProfileTabScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import ConsentScreen from '../screens/ConsentScreen';
@@ -79,6 +86,14 @@ import WearablesScreen from '../screens/WearablesScreen';
 import PredictiveInsightsScreen from '../screens/PredictiveInsightsScreen';
 import TelemedicineScreen from '../screens/TelemedicineScreen';
 
+export type TabParamList = {
+    Home: undefined;
+    Services: undefined;
+    Care: undefined;
+    Insights: undefined;
+    ProfileTab: undefined;
+};
+
 export type RootStackParamList = {
     Intro: undefined;
     SignIn: undefined;
@@ -100,6 +115,12 @@ export type RootStackParamList = {
     RoleSelection: {
         identityType?: 'hfr' | 'abha';
     };
+    MainTabs: undefined;
+    Home: undefined;
+    Services: undefined;
+    Care: undefined;
+    Insights: undefined;
+    ProfileTab: undefined;
     PatientDashboard: undefined;
     DoctorDashboard: undefined;
     HospitalDashboard: undefined;
@@ -189,6 +210,83 @@ export type RootStackParamList = {
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<TabParamList>();
+
+function MainTabs() {
+    return (
+        <Tab.Navigator
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: {
+                    backgroundColor: '#fff',
+                    borderTopWidth: 1,
+                    borderTopColor: '#e5e7eb',
+                    paddingTop: 8,
+                    paddingBottom: Platform.OS === 'ios' ? 24 : 8,
+                    height: Platform.OS === 'ios' ? 88 : 64,
+                },
+                tabBarActiveTintColor: '#000',
+                tabBarInactiveTintColor: '#9ca3af',
+                tabBarLabelStyle: {
+                    fontSize: 11,
+                    fontWeight: '600',
+                    marginTop: 4,
+                },
+            }}
+        >
+            <Tab.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ color, size }) => (
+                        <Text style={{ fontSize: 24 }}>🏠</Text>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Services"
+                component={ServicesScreen}
+                options={{
+                    tabBarLabel: 'Services',
+                    tabBarIcon: ({ color, size }) => (
+                        <Text style={{ fontSize: 24 }}>📚</Text>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Care"
+                component={CareScreen}
+                options={{
+                    tabBarLabel: 'Care',
+                    tabBarIcon: ({ color, size }) => (
+                        <Text style={{ fontSize: 24 }}>🩺</Text>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Insights"
+                component={InsightsScreen}
+                options={{
+                    tabBarLabel: 'Insights',
+                    tabBarIcon: ({ color, size }) => (
+                        <Text style={{ fontSize: 24 }}>📊</Text>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="ProfileTab"
+                component={ProfileTabScreen}
+                options={{
+                    tabBarLabel: 'Profile',
+                    tabBarIcon: ({ color, size }) => (
+                        <Text style={{ fontSize: 24 }}>👤</Text>
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
+}
 
 export default function AppNavigator() {
     return (
@@ -204,6 +302,7 @@ export default function AppNavigator() {
             <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />
             <Stack.Screen name="ABHASuccess" component={ABHASuccessScreen} />
             <Stack.Screen name="RoleSelection" component={RoleSelectionScreen} />
+            <Stack.Screen name="MainTabs" component={MainTabs} />
             <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
             <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} />
             <Stack.Screen name="HospitalDashboard" component={HospitalDashboard} />

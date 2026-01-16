@@ -24,7 +24,7 @@ export interface NotificationSettings {
         push: boolean;
         sms: boolean;
         email: boolean;
-        inApp: boolean;
+        in_app: boolean;
     };
     categories: {
         [key in NotificationCategory]: {

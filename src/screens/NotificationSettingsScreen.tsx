@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
-import { notificationsService } from '../services/notificationsService';
+import { notificationsService } from '../../backend/notifications/notificationsService';
 import { NotificationSettings, NotificationCategory, NotificationChannel } from '../../backend/types/notifications';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'NotificationSettings'>;

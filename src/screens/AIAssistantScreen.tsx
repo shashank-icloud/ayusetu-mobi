@@ -48,7 +48,7 @@ export default function AIAssistantScreen({ navigation }: Props) {
 
         const userMessage = query.trim();
         setQuery('');
-        
+
         setChatHistory(prev => [...prev, {
             type: 'user',
             content: userMessage,

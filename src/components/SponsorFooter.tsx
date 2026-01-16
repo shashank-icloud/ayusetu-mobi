@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, Platform } from 'react-native';
 
 interface Props {
     logoSource: any;
@@ -17,21 +17,21 @@ export default function SponsorFooter({ logoSource }: Props) {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingVertical: 24,
-        // keep footer near bottom
+        paddingVertical: 20,
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 36,
+        bottom: Platform.OS === 'ios' ? 40 : 30,
     },
     label: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#000',
         marginBottom: 8,
+        fontWeight: '500',
     },
     logo: {
-        width: 64,
-        height: 64,
-        opacity: 0.95,
+        width: 60,
+        height: 60,
+        opacity: 0.9,
     },
 });

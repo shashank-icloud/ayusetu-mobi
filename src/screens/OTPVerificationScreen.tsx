@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, TextInput, Alert } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import SponsorFooter from '../components/SponsorFooter';

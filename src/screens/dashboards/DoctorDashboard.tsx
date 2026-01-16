@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
 
@@ -8,12 +9,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'DoctorDashboard'>;
 export default function DoctorDashboard({ navigation }: Props) {
     return (
         <SafeAreaView style={styles.container}>
-            {/* Corner decorations */}
-            <View style={styles.cornerTopLeft} />
-            <View style={styles.cornerTopRight} />
-            <View style={styles.cornerBottomLeft} />
-            <View style={styles.cornerBottomRight} />
-
             {/* Header */}
             <View style={styles.header}>
                 <View>
@@ -174,7 +169,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 24,
-        paddingTop: 20,
+        paddingTop: 16,
         paddingBottom: 16,
         backgroundColor: '#fff',
     },

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TypewriterText from '../components/TypewriterText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';

@@ -73,7 +73,7 @@ export default function TelemedicineScreen({ navigation }: Props) {
                 symptoms,
                 urgency: 'routine',
             });
-            
+
             Alert.alert(
                 'Booking Confirmed',
                 `Your consultation with ${selectedDoctor.name} is scheduled for ${date} at ${time}`,
@@ -191,7 +191,7 @@ export default function TelemedicineScreen({ navigation }: Props) {
                 {/* Doctors List */}
                 <View style={styles.doctorsSection}>
                     <Text style={styles.sectionTitle}>Available Doctors</Text>
-                    
+
                     {loading ? (
                         <ActivityIndicator size="large" color="#2196f3" style={{ marginTop: 20 }} />
                     ) : filteredDoctors.length === 0 ? (
@@ -300,7 +300,7 @@ export default function TelemedicineScreen({ navigation }: Props) {
                                 <Text style={styles.bookingTitle}>Book Consultation</Text>
                                 <Text style={styles.bookingDoctorName}>{selectedDoctor.name}</Text>
                                 <Text style={styles.bookingSpecialization}>{selectedDoctor.specialization}</Text>
-                                
+
                                 <View style={styles.bookingForm}>
                                     <Text style={styles.formLabel}>Select Date & Time</Text>
                                     {selectedDoctor.availableSlots && selectedDoctor.availableSlots.length > 0 && (
@@ -330,7 +330,7 @@ export default function TelemedicineScreen({ navigation }: Props) {
                                             ))}
                                         </View>
                                     )}
-                                    
+
                                     <View style={styles.feeRow}>
                                         <Text style={styles.feeRowLabel}>Consultation Fee:</Text>
                                         <Text style={styles.feeRowAmount}>₹{selectedDoctor.consultationFee}</Text>

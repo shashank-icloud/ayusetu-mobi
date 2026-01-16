@@ -27,7 +27,7 @@ const mockNotificationSettings: NotificationSettings = {
         push: true,
         sms: true,
         email: true,
-        inApp: true,
+        in_app: true,
     },
     categories: {
         health_record: {
@@ -278,28 +278,33 @@ class NotificationsService {
         if (Config.DEVELOPER_MODE) {
             await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 
-            const updated: NotificationSettings = {
-                ...mockNotificationSettings,
-                ...request,
-                updatedAt: new Date().toISOString(),
-            };
+            const updated: NotificationSettings = JSON.parse(JSON.stringify(mockNotificationSettings));
+            updated.updatedAt = new Date().toISOString();
 
             if (request.channels) {
-                updated.channels = { ...mockNotificationSettings.channels, ...request.channels };
+                updated.channels = { ...updated.channels, ...request.channels };
             }
 
             if (request.frequency) {
-                updated.frequency = { ...mockNotificationSettings.frequency, ...request.frequency };
+                updated.frequency = { ...updated.frequency, ...request.frequency };
             }
 
             if (request.category) {
                 updated.categories = {
-                    ...mockNotificationSettings.categories,
+                    ...updated.categories,
                     [request.category.category]: {
-                        ...mockNotificationSettings.categories[request.category.category],
+                        ...updated.categories[request.category.category],
                         ...request.category.settings,
                     },
                 };
+            }
+
+            if (request.soundEnabled !== undefined) {
+                updated.soundEnabled = request.soundEnabled;
+            }
+
+            if (request.vibrationEnabled !== undefined) {
+                updated.vibrationEnabled = request.vibrationEnabled;
             }
 
             return updated;
